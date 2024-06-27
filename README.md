@@ -1,0 +1,2 @@
+# PythonLab
+Sve oko pythona
