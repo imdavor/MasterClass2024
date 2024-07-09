@@ -10,7 +10,7 @@ window.resizable(False, False)
 backgroundImage = ImageTk.PhotoImage(file='bg.jpg')
 
 bgLabel = Label(window, image=backgroundImage)
-bgLabel.place(x=50, y=50)
+bgLabel.place(x=0, y=0)
 
 loginFrame = Frame(window)
 
