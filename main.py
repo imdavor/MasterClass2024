@@ -1,5 +1,16 @@
 from tkinter import *
 from PIL import ImageTk
+from tkinter import messagebox
+
+
+def login():
+    if usernameEntry.get() == '' or passwordEntry.get() == '':
+        messagebox.showerror('Error', 'Fields cannot be empty')
+    elif usernameEntry.get() == 'Kos' and passwordEntry.get() == '123':
+        messagebox.showinfo('Success', f'Welcome {usernameEntry.get()}')
+    else:
+        messagebox.showerror('Error', 'Please enter correct  credentials')
+
 
 window = Tk()
 
@@ -35,7 +46,7 @@ passwordEntry = Entry(loginFrame, font=('Helvetica', 20), bd=5, fg='royalblue')
 passwordEntry.grid(row=2, column=1, pady=10, padx=20)
 
 loginButton = Button(loginFrame, text='Login', font=('Helvetica', 14), width=15, fg='white', bg='cornflower blue',
-                     cursor='hand2')
+                     cursor='hand2', command=login)
 loginButton.grid(row=3, column=1)
 
 window.mainloop()
