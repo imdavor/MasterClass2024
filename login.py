@@ -6,7 +6,7 @@ from tkinter import messagebox
 def login():
     if usernameEntry.get() == '' or passwordEntry.get() == '':
         messagebox.showerror('Error', 'Fields cannot be empty')
-    elif usernameEntry.get() == 'Kos' and passwordEntry.get() == '123':
+    elif usernameEntry.get() == 'k' and passwordEntry.get() == '1':
         # messagebox.showinfo('Success', f'Welcome {usernameEntry.get()}')
         window.destroy()
         import sms
