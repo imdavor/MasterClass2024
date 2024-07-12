@@ -6,6 +6,13 @@ import ttkthemes
 from tkinter import ttk
 
 
+def connect_database():
+    connect_window = Toplevel()
+    connect_window.geometry('480x250+730+230')
+    connect_window.title('Connect to database')
+    connect_window.resizable(False, False)
+
+
 def clock():
     currentdate = time.strftime('%d.%m.%Y')
     currenttime = time.strftime('%H:%M:%S')
@@ -46,7 +53,7 @@ sliderlabel.place(x=200, y=0)
 slider()
 
 # connect to database
-connectButton = ttk.Button(root, text='Connect to database')
+connectButton = ttk.Button(root, text='Connect to database', command=connect_database)
 connectButton.place(x=980, y=0)
 
 leftFrame = Frame(root)
@@ -56,22 +63,22 @@ logo_image = PhotoImage(file='images/students.png')
 logo_Label = Label(leftFrame, image=logo_image)
 logo_Label.grid(row=0, column=0)
 
-addstudentButton = ttk.Button(leftFrame, text='Add Student', width=13)
+addstudentButton = ttk.Button(leftFrame, text='Add Student', width=13, state=DISABLED)
 addstudentButton.grid(row=1, column=0, pady=10)
 
-searchstudentButton = ttk.Button(leftFrame, text='Search Student', width=13)
+searchstudentButton = ttk.Button(leftFrame, text='Search Student', width=13, state=DISABLED)
 searchstudentButton.grid(row=2, column=0, pady=10)
 
-deletestudentButton = ttk.Button(leftFrame, text='Delete Student', width=13)
+deletestudentButton = ttk.Button(leftFrame, text='Delete Student', width=13, state=DISABLED)
 deletestudentButton.grid(row=3, column=0, pady=10)
 
-updatestudentButton = ttk.Button(leftFrame, text='Update Student', width=13)
+updatestudentButton = ttk.Button(leftFrame, text='Update Student', width=13, state=DISABLED)
 updatestudentButton.grid(row=4, column=0, pady=10)
 
-showstudentButton = ttk.Button(leftFrame, text='Show Student', width=13)
+showstudentButton = ttk.Button(leftFrame, text='Show Student', width=13, state=DISABLED)
 showstudentButton.grid(row=5, column=0, pady=10)
 
-exportstudentButton = ttk.Button(leftFrame, text='Export Student', width=13)
+exportstudentButton = ttk.Button(leftFrame, text='Export Student', width=13, state=DISABLED)
 exportstudentButton.grid(row=6, column=0, pady=10)
 
 exitButton = ttk.Button(leftFrame, text='Exit', width=13)
