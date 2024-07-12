@@ -7,10 +7,28 @@ from tkinter import ttk
 
 
 def connect_database():
-    connect_window = Toplevel()
-    connect_window.geometry('480x250+730+230')
-    connect_window.title('Connect to database')
-    connect_window.resizable(False, False)
+    connectWindow = Toplevel()
+    connectWindow.geometry('480x250+730+230')
+    connectWindow.title('Connect to database')
+    connectWindow.resizable(False, False)
+
+    hostnameLabel = Label(connectWindow, text='Host Name', font=('arial', 20))
+    hostnameLabel.grid(row=0, column=0, padx=30)
+    hostnameEntry = Entry(connectWindow, font=('Helvetica', 15, 'bold'), bd=2)
+    hostnameEntry.grid(row=0, column=1, padx=0, pady=20)
+
+    usernameLabel = Label(connectWindow, text='User Name', font=('arial', 20))
+    usernameLabel.grid(row=1, column=0, padx=30)
+    usernameLabel = Entry(connectWindow, font=('Helvetica', 15, 'bold'), bd=2)
+    usernameLabel.grid(row=1, column=1, padx=0, pady=20)
+
+    passwordLabel = Label(connectWindow, text='Password', font=('arial', 20))
+    passwordLabel.grid(row=2, column=0, padx=30)
+    passwordLabel = Entry(connectWindow, font=('Helvetica', 15, 'bold'), bd=2, show='*')
+    passwordLabel.grid(row=2, column=1, padx=0, pady=20)
+
+    connectButton = ttk.Button(connectWindow, text='CONNECT')
+    connectButton.grid(row=3, column=1)
 
 
 def clock():
