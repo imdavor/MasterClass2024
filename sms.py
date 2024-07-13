@@ -1,9 +1,8 @@
-from tkinter import *
-from PIL import ImageTk
-from tkinter import messagebox
 import time
-import ttkthemes
+from tkinter import *
 from tkinter import ttk
+
+import ttkthemes
 
 
 def connect_database():
@@ -27,8 +26,8 @@ def connect_database():
     passwordLabel = Entry(connectWindow, font=('Helvetica', 15, 'bold'), bd=2, show='*')
     passwordLabel.grid(row=2, column=1, padx=0, pady=20)
 
-    connectButton = ttk.Button(connectWindow, text='CONNECT')
-    connectButton.grid(row=3, column=1)
+    connect_button = ttk.Button(connectWindow, text='CONNECT')
+    connect_button.grid(row=3, column=1)
 
 
 def clock():
