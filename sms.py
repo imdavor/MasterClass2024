@@ -1,12 +1,27 @@
 import time
 from tkinter import *
-from tkinter import ttk
-
+from tkinter import ttk, Entry, messagebox
+import pymysql
 import ttkthemes
 
 
 def connect_database():
+    def connect():
+        try:
+            conn = pymysql.connect(host=hostnameEntry.get(), user=usernameEntry.get(), password=passwordEntry.get())
+            mycursor = conn.cursor()
+            messagebox.showinfo('Success', 'Database connection is successful!', parent=connectWindow)
+        except:
+            messagebox.showerror('Error', 'Invalid access', parent=connectWindow)
+        query = 'create database studentmanagementsystem'
+        mycursor.execute(query)
+        query = 'use studentmanagementsystem'
+        mycursor.execute(query)
+        query = 'create table student(id int not null primary key, name varchar(30), mobile varchar(10), email varchar(30), address varchar(100), gender varchar(20), dob varchar(30), date varchar(50), time varchar(50))'
+        mycursor.execute(query)
+
     connectWindow = Toplevel()
+    connectWindow.grab_set()  # ako kliknem izvan prozora neće pasti iza
     connectWindow.geometry('480x250+730+230')
     connectWindow.title('Connect to database')
     connectWindow.resizable(False, False)
@@ -18,15 +33,15 @@ def connect_database():
 
     usernameLabel = Label(connectWindow, text='User Name', font=('arial', 20))
     usernameLabel.grid(row=1, column=0, padx=30)
-    usernameLabel = Entry(connectWindow, font=('Helvetica', 15, 'bold'), bd=2)
-    usernameLabel.grid(row=1, column=1, padx=0, pady=20)
+    usernameEntry = Entry(connectWindow, font=('Helvetica', 15, 'bold'), bd=2)
+    usernameEntry.grid(row=1, column=1, padx=0, pady=20)
 
     passwordLabel = Label(connectWindow, text='Password', font=('arial', 20))
     passwordLabel.grid(row=2, column=0, padx=30)
-    passwordLabel = Entry(connectWindow, font=('Helvetica', 15, 'bold'), bd=2, show='*')
-    passwordLabel.grid(row=2, column=1, padx=0, pady=20)
+    passwordEntry = Entry(connectWindow, font=('Helvetica', 15, 'bold'), bd=2, show='*')
+    passwordEntry.grid(row=2, column=1, padx=0, pady=20)
 
-    connect_button = ttk.Button(connectWindow, text='CONNECT')
+    connect_button = ttk.Button(connectWindow, text='CONNECT', command=connect)
     connect_button.grid(row=3, column=1)
 
 
