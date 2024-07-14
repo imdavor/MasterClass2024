@@ -8,17 +8,33 @@ import ttkthemes
 def connect_database():
     def connect():
         try:
-            conn = pymysql.connect(host=hostnameEntry.get(), user=usernameEntry.get(), password=passwordEntry.get())
+            # conn = pymysql.connect(host=hostnameEntry.get(), user=usernameEntry.get(), password=passwordEntry.get())
+            conn = pymysql.connect(host='localhost', user='root', password='toor')
+
             mycursor = conn.cursor()
-            messagebox.showinfo('Success', 'Database connection is successful!', parent=connectWindow)
         except:
             messagebox.showerror('Error', 'Invalid access', parent=connectWindow)
-        query = 'create database studentmanagementsystem'
-        mycursor.execute(query)
-        query = 'use studentmanagementsystem'
-        mycursor.execute(query)
-        query = 'create table student(id int not null primary key, name varchar(30), mobile varchar(10), email varchar(30), address varchar(100), gender varchar(20), dob varchar(30), date varchar(50), time varchar(50))'
-        mycursor.execute(query)
+            return
+        try:
+            query = 'create database studentmanagementsystem'
+            mycursor.execute(query)
+            query = 'use studentmanagementsystem'
+            mycursor.execute(query)
+            query = ('create table student(id int not null primary key, name varchar(30), mobile varchar(10), '
+                     'email varchar(30), address varchar(100), gender varchar(20), dob varchar(30), date varchar(50), '
+                     'time varchar(50))')
+            mycursor.execute(query)
+        except:
+            query = 'use studentmanagementsystem'
+            mycursor.execute(query)
+        messagebox.showinfo('Success', 'Database connection is successful!', parent=connectWindow)
+        connectWindow.destroy()
+        addstudentButton.config(state=NORMAL)
+        searchstudentButton.config(state=NORMAL)
+        deletestudentButton.config(state=NORMAL)
+        updatestudentButton.config(state=NORMAL)
+        showstudentButton.config(state=NORMAL)
+        exportstudentButton.config(state=NORMAL)
 
     connectWindow = Toplevel()
     connectWindow.grab_set()  # ako kliknem izvan prozora neće pasti iza
