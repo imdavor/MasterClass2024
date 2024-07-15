@@ -5,6 +5,19 @@ import pymysql
 import ttkthemes
 
 
+def add_student():
+    addWindow = Toplevel()
+    addWindow.grab_set()  # ako kliknem izvan prozora neće pasti iza
+    addWindow.geometry('480x250+730+230')
+    addWindow.title('Add student')
+    addWindow.resizable(False, False)
+
+    idLabel = Label(addWindow, text='Id', font=('arial', 20))
+    idLabel.grid(row=0, column=0, padx=30, pady=20)
+    idLabelEntry = Entry(addWindow, font=('Helvetica', 15, 'bold'), bd=2)
+    idLabelEntry.grid(row=0, column=1, pady=20)
+
+
 def connect_database():
     def connect():
         try:
@@ -111,7 +124,7 @@ logo_image = PhotoImage(file='images/students.png')
 logo_Label = Label(leftFrame, image=logo_image)
 logo_Label.grid(row=0, column=0)
 
-addstudentButton = ttk.Button(leftFrame, text='Add Student', width=13, state=DISABLED)
+addstudentButton = ttk.Button(leftFrame, text='Add Student', width=13, state=DISABLED, command=add_student)
 addstudentButton.grid(row=1, column=0, pady=10)
 
 searchstudentButton = ttk.Button(leftFrame, text='Search Student', width=13, state=DISABLED)
