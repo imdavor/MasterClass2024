@@ -7,11 +7,10 @@ import ttkthemes
 
 def search_student():
     def search_data():
-        query = ('select * from student where id=%s OR name=s%s OR mobile=%s OR email=%s OR address=%s '
-                 'OR gender=%s OR dob=%s')
+        query = 'select * from student where id=%s OR name=%s OR email=%s OR mobile=%s OR address=%s OR gender=%s OR dob=%s'
         mycursor.execute(query, (
-            idEntry.get(), nameEntry.get(), phoneEntry.get(), emailEntry.get(), addressEntry.get(), genderEntry.get(),
-            dobEntry.get()))
+            idEntry.get(), nameEntry.get(), emailEntry.get(), phoneEntry.get(), addressEntry.get(),
+            genderEntry.get(), dobEntry.get()))
         studentTable.delete(*studentTable.get_children())
         fetched_data = mycursor.fetchall()
         for data in fetched_data:
@@ -34,15 +33,15 @@ def search_student():
     nameEntry = Entry(search_window, font=('Helvetica', 15, 'bold'), bd=2)
     nameEntry.grid(row=1, column=1, pady=15)
 
-    phoneLabel = Label(search_window, text='Phone', font=('arial', 20))
-    phoneLabel.grid(row=2, column=0, padx=30, pady=15, sticky="w")
-    phoneEntry = Entry(search_window, font=('Helvetica', 15, 'bold'), bd=2)
-    phoneEntry.grid(row=2, column=1, pady=15)
-
     emailLabel = Label(search_window, text='Email', font=('arial', 20))
     emailLabel.grid(row=3, column=0, padx=30, pady=15, sticky="w")
     emailEntry = Entry(search_window, font=('Helvetica', 15, 'bold'), bd=2)
     emailEntry.grid(row=3, column=1, pady=15)
+
+    phoneLabel = Label(search_window, text='Phone', font=('arial', 20))
+    phoneLabel.grid(row=2, column=0, padx=30, pady=15, sticky="w")
+    phoneEntry = Entry(search_window, font=('Helvetica', 15, 'bold'), bd=2)
+    phoneEntry.grid(row=2, column=1, pady=15)
 
     addressLabel = Label(search_window, text='Address', font=('arial', 20))
     addressLabel.grid(row=4, column=0, padx=30, pady=15, sticky="w")
@@ -101,8 +100,7 @@ def add_student():
             fetched_data = mycursor.fetchall()
             studentTable.delete(*studentTable.get_children())
             for data in fetched_data:
-                datalist = list(data)
-                studentTable.insert('', END, values=datalist)
+                studentTable.insert('', END, values=data)
 
     add_window = Toplevel()
     add_window.grab_set()  # ako kliknem izvan prozora neće pasti iza
