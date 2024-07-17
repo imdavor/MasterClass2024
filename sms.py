@@ -5,6 +5,64 @@ import pymysql
 import ttkthemes
 
 
+def search_student():
+    def search_data():
+        query = ('select * from student where id=%s OR name=s%s OR mobile=%s OR email=%s OR address=%s '
+                 'OR gender=%s OR dob=%s')
+        mycursor.execute(query, (
+            idEntry.get(), nameEntry.get(), phoneEntry.get(), emailEntry.get(), addressEntry.get(), genderEntry.get(),
+            dobEntry.get()))
+        studentTable.delete(*studentTable.get_children())
+        fetched_data = mycursor.fetchall()
+        for data in fetched_data:
+            studentTable.insert('', END, values=data)  # atomatski pretvara u listu
+
+    search_window = Toplevel()
+    search_window.grab_set()  # ako kliknem izvan prozora neće pasti iza
+    search_window.resizable(False, False)
+    search_window.geometry('480x550+730+230')
+    search_window.title('Search Student')
+    search_window.resizable(False, False)
+
+    idLabel = Label(search_window, text='Id', font=('arial', 20))
+    idLabel.grid(row=0, column=0, padx=30, pady=15, sticky="w")
+    idEntry = Entry(search_window, font=('Helvetica', 15, 'bold'), bd=2)
+    idEntry.grid(row=0, column=1, pady=15)
+
+    nameLabel = Label(search_window, text='Name', font=('arial', 20))
+    nameLabel.grid(row=1, column=0, padx=30, pady=15, sticky="w")
+    nameEntry = Entry(search_window, font=('Helvetica', 15, 'bold'), bd=2)
+    nameEntry.grid(row=1, column=1, pady=15)
+
+    phoneLabel = Label(search_window, text='Phone', font=('arial', 20))
+    phoneLabel.grid(row=2, column=0, padx=30, pady=15, sticky="w")
+    phoneEntry = Entry(search_window, font=('Helvetica', 15, 'bold'), bd=2)
+    phoneEntry.grid(row=2, column=1, pady=15)
+
+    emailLabel = Label(search_window, text='Email', font=('arial', 20))
+    emailLabel.grid(row=3, column=0, padx=30, pady=15, sticky="w")
+    emailEntry = Entry(search_window, font=('Helvetica', 15, 'bold'), bd=2)
+    emailEntry.grid(row=3, column=1, pady=15)
+
+    addressLabel = Label(search_window, text='Address', font=('arial', 20))
+    addressLabel.grid(row=4, column=0, padx=30, pady=15, sticky="w")
+    addressEntry = Entry(search_window, font=('Helvetica', 15, 'bold'), bd=2)
+    addressEntry.grid(row=4, column=1, pady=15)
+
+    genderLabel = Label(search_window, text='Gender', font=('arial', 20))
+    genderLabel.grid(row=5, column=0, padx=30, pady=15, sticky="w")
+    genderEntry = Entry(search_window, font=('Helvetica', 15, 'bold'), bd=2)
+    genderEntry.grid(row=5, column=1, pady=15)
+
+    dobLabel = Label(search_window, text='DOB', font=('arial', 20))
+    dobLabel.grid(row=6, column=0, padx=30, pady=15, sticky="w")
+    dobEntry = Entry(search_window, font=('Helvetica', 15, 'bold'), bd=2)
+    dobEntry.grid(row=6, column=1, pady=15)
+
+    search_student_button = ttk.Button(search_window, text="Search Student", command=search_data)
+    search_student_button.grid(row=7, column=1)
+
+
 def add_student():
     def add_data():
         if (idEntry.get() == '' or nameEntry.get() == '' or phoneEntry.get() == '' or emailEntry.get() == ''
@@ -13,21 +71,38 @@ def add_student():
         else:
             currentdate = time.strftime('%d.%m.%Y')
             currenttime = time.strftime('%H:%M:%S')
-            query = 'insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s)'
-            mycursor.execute(query,
-                             (idEntry.get(), nameEntry.get(), phoneEntry.get(), emailEntry.get(), addressEntry.get(),
-                              genderEntry.get(), dobEntry.get(), currentdate, currenttime))
-            conn.commit()  # execute zapis prem bazi
-            result = messagebox.askyesno('Data Entry',
-                                         'Data added successfully. Do you want to clean the form')  # oš očistiti formu?
-            if result:
-                idEntry.delete(0, END)
-                nameEntry.delete(0, END)
-                phoneEntry.delete(0, END)
-                emailEntry.delete(0, END)
-                addressEntry.delete(0, END)
-                genderEntry.delete(0, END)
-                dobEntry.delete(0, END)
+            try:
+                query = 'insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+                mycursor.execute(query,
+                                 (
+                                     idEntry.get(), nameEntry.get(), phoneEntry.get(), emailEntry.get(),
+                                     addressEntry.get(),
+                                     genderEntry.get(), dobEntry.get(), currentdate, currenttime))
+                conn.commit()  # execute zapis prem bazi
+                result = messagebox.askyesno('Data Entry',
+                                             'Data added successfully. Do you want to clean the form')  # oš očistiti
+                # formu?
+                if result:
+                    idEntry.delete(0, END)
+                    nameEntry.delete(0, END)
+                    phoneEntry.delete(0, END)
+                    emailEntry.delete(0, END)
+                    addressEntry.delete(0, END)
+                    genderEntry.delete(0, END)
+                    dobEntry.delete(0, END)
+                else:
+                    pass
+            except:
+                messagebox.showerror('Error', 'Id already exist', parent=add_window)
+                return
+
+            query = 'select * from student'
+            mycursor.execute(query)
+            fetched_data = mycursor.fetchall()
+            studentTable.delete(*studentTable.get_children())
+            for data in fetched_data:
+                datalist = list(data)
+                studentTable.insert('', END, values=datalist)
 
     add_window = Toplevel()
     add_window.grab_set()  # ako kliknem izvan prozora neće pasti iza
@@ -184,7 +259,7 @@ logo_Label.grid(row=0, column=0)
 addstudentButton = ttk.Button(leftFrame, text='Add Student', width=13, state=DISABLED, command=add_student)
 addstudentButton.grid(row=1, column=0, pady=10)
 
-searchstudentButton = ttk.Button(leftFrame, text='Search Student', width=13, state=DISABLED)
+searchstudentButton = ttk.Button(leftFrame, text='Search Student', width=13, state=DISABLED, command=search_student)
 searchstudentButton.grid(row=2, column=0, pady=10)
 
 deletestudentButton = ttk.Button(leftFrame, text='Delete Student', width=13, state=DISABLED)
@@ -229,7 +304,7 @@ studentTable.heading('Address', text='Address')
 studentTable.heading('Gender', text='Gender')
 studentTable.heading('DOB', text='D.O.B.')
 studentTable.heading('DateAdded', text='Date Added')
-studentTable.heading('AddedTime', text='Added Time')
+studentTable.heading('AddedTime', text='Time Added')
 
 studentTable.config(show="headings")
 
