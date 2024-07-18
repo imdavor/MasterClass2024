@@ -5,6 +5,26 @@ import pymysql
 import ttkthemes
 
 
+def delete_student():
+    # get index of row
+    indexing = studentTable.focus()
+    print(indexing)
+    content = studentTable.item(indexing)
+    content_id = content['values'][0]  # vrijednost iz indexiranog podatka u ovom slučaju id
+    # a sad stvarno brišemo record
+    query = 'delete from student where id=%s'
+    mycursor.execute(query, content_id)
+    conn.commit()
+    messagebox.showinfo('Deleted', f'This {content_id} is Record deleted successfully!')
+    # refresh tree view
+    query = 'select * from student'
+    mycursor.execute(query)
+    fetched_data = mycursor.fetchall()
+    studentTable.delete(*studentTable.get_children())
+    for data in fetched_data:
+        studentTable.insert('', END, values=data)
+
+
 def search_student():
     def search_data():
         query = 'select * from student where id=%s OR name=%s OR email=%s OR mobile=%s OR address=%s OR gender=%s OR dob=%s'
@@ -260,7 +280,7 @@ addstudentButton.grid(row=1, column=0, pady=10)
 searchstudentButton = ttk.Button(leftFrame, text='Search Student', width=13, state=DISABLED, command=search_student)
 searchstudentButton.grid(row=2, column=0, pady=10)
 
-deletestudentButton = ttk.Button(leftFrame, text='Delete Student', width=13, state=DISABLED)
+deletestudentButton = ttk.Button(leftFrame, text='Delete Student', width=13, state=DISABLED, command=delete_student)
 deletestudentButton.grid(row=3, column=0, pady=10)
 
 updatestudentButton = ttk.Button(leftFrame, text='Update Student', width=13, state=DISABLED)
