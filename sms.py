@@ -5,6 +5,15 @@ import pymysql
 import ttkthemes
 
 
+def show_student():
+    query = 'select * from student'
+    mycursor.execute(query)
+    fetched_data = mycursor.fetchall()
+    studentTable.delete(*studentTable.get_children())
+    for data in fetched_data:
+        studentTable.insert('', END, values=data)
+
+
 def delete_student():
     # get index of row
     indexing = studentTable.focus()
@@ -17,17 +26,19 @@ def delete_student():
     conn.commit()
     messagebox.showinfo('Deleted', f'This {content_id} is Record deleted successfully!')
     # refresh tree view
-    query = 'select * from student'
-    mycursor.execute(query)
-    fetched_data = mycursor.fetchall()
-    studentTable.delete(*studentTable.get_children())
-    for data in fetched_data:
-        studentTable.insert('', END, values=data)
+    # query = 'select * from student'
+    # mycursor.execute(query)
+    # fetched_data = mycursor.fetchall()
+    # studentTable.delete(*studentTable.get_children())
+    # for data in fetched_data:
+    #     studentTable.insert('', END, values=data)
+    show_student()
 
 
 def search_student():
     def search_data():
-        query = 'select * from student where id=%s OR name=%s OR email=%s OR mobile=%s OR address=%s OR gender=%s OR dob=%s'
+        query = ('select * from student where id=%s OR name=%s OR email=%s OR mobile=%s OR address=%s OR gender=%s OR '
+                 'dob=%s')
         mycursor.execute(query, (
             idEntry.get(), nameEntry.get(), emailEntry.get(), phoneEntry.get(), addressEntry.get(),
             genderEntry.get(), dobEntry.get()))
@@ -286,7 +297,7 @@ deletestudentButton.grid(row=3, column=0, pady=10)
 updatestudentButton = ttk.Button(leftFrame, text='Update Student', width=13, state=DISABLED)
 updatestudentButton.grid(row=4, column=0, pady=10)
 
-showstudentButton = ttk.Button(leftFrame, text='Show Student', width=13, state=DISABLED)
+showstudentButton = ttk.Button(leftFrame, text='Show Student', width=13, state=DISABLED, command=show_student)
 showstudentButton.grid(row=5, column=0, pady=10)
 
 exportstudentButton = ttk.Button(leftFrame, text='Export Student', width=13, state=DISABLED)
@@ -323,6 +334,22 @@ studentTable.heading('Gender', text='Gender')
 studentTable.heading('DOB', text='D.O.B.')
 studentTable.heading('DateAdded', text='Date Added')
 studentTable.heading('AddedTime', text='Time Added')
+
+# podesimo širinu columni
+studentTable.column('Id', width=50, anchor=CENTER)
+studentTable.column('Name', width=100, anchor=CENTER)
+studentTable.column('MobileNumber', width=150, anchor=CENTER)
+studentTable.column('Email', width=200, anchor=CENTER)
+studentTable.column('Address', width=100, anchor=CENTER)
+studentTable.column('Gender', width=100, anchor=CENTER)
+studentTable.column('DOB', width=100, anchor=CENTER)
+studentTable.column('DateAdded', width=100, anchor=CENTER)
+studentTable.column('AddedTime', width=100, anchor=CENTER)
+
+# za promjenu bg od treeviewa
+style = ttk.Style()
+style.configure('Treeview', rowheight=30, font=('helvetica', 11, 'bold'), background='light gray',
+                fieldbackground='grey')
 
 studentTable.config(show="headings")
 
