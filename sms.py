@@ -5,6 +5,77 @@ import pymysql
 import ttkthemes
 
 
+def toplevel_data(title, button_text, command):
+    global idEntry, nameEntry, phoneEntry, emailEntry, addressEntry, genderEntry, dobEntry, screen
+    screen = Toplevel()
+    screen.grab_set()  # ako kliknem izvan prozora neće pasti iza
+    screen.resizable(False, False)
+    screen.geometry('480x550+730+230')
+    screen.title(title)
+    screen.resizable(False, False)
+
+    idLabel = Label(screen, text='Id', font=('arial', 20))
+    idLabel.grid(row=0, column=0, padx=30, pady=15, sticky="w")
+    idEntry = Entry(screen, font=('Helvetica', 15, 'bold'), bd=2)
+    idEntry.grid(row=0, column=1, pady=15)
+
+    nameLabel = Label(screen, text='Name', font=('arial', 20))
+    nameLabel.grid(row=1, column=0, padx=30, pady=15, sticky="w")
+    nameEntry = Entry(screen, font=('Helvetica', 15, 'bold'), bd=2)
+    nameEntry.grid(row=1, column=1, pady=15)
+
+    emailLabel = Label(screen, text='Email', font=('arial', 20))
+    emailLabel.grid(row=3, column=0, padx=30, pady=15, sticky="w")
+    emailEntry = Entry(screen, font=('Helvetica', 15, 'bold'), bd=2)
+    emailEntry.grid(row=3, column=1, pady=15)
+
+    phoneLabel = Label(screen, text='Phone', font=('arial', 20))
+    phoneLabel.grid(row=2, column=0, padx=30, pady=15, sticky="w")
+    phoneEntry = Entry(screen, font=('Helvetica', 15, 'bold'), bd=2)
+    phoneEntry.grid(row=2, column=1, pady=15)
+
+    addressLabel = Label(screen, text='Address', font=('arial', 20))
+    addressLabel.grid(row=4, column=0, padx=30, pady=15, sticky="w")
+    addressEntry = Entry(screen, font=('Helvetica', 15, 'bold'), bd=2)
+    addressEntry.grid(row=4, column=1, pady=15)
+
+    genderLabel = Label(screen, text='Gender', font=('arial', 20))
+    genderLabel.grid(row=5, column=0, padx=30, pady=15, sticky="w")
+    genderEntry = Entry(screen, font=('Helvetica', 15, 'bold'), bd=2)
+    genderEntry.grid(row=5, column=1, pady=15)
+
+    dobLabel = Label(screen, text='DOB', font=('arial', 20))
+    dobLabel.grid(row=6, column=0, padx=30, pady=15, sticky="w")
+    dobEntry = Entry(screen, font=('Helvetica', 15, 'bold'), bd=2)
+    dobEntry.grid(row=6, column=1, pady=15)
+
+    update_student_button = ttk.Button(screen, text=button_text, command=command)
+    update_student_button.grid(row=7, column=1)
+
+
+def update_data():
+    query = (
+        'update student set name=%s, mobile=%s, email=%s, address=%s, gender=%s, dob=%s, date=%s, time=%s where '
+        'id=%s')
+    mycursor.execute(query, (nameEntry.get(), phoneEntry.get(), emailEntry.get(), addressEntry.get(),
+                             genderEntry.get(), dobEntry.get(), currentdate, currenttime, idEntry.get()))
+    conn.commit()
+    messagebox.showinfo('Success', f'Id {idEntry.get()} updated successfully!', parent=screen)
+    show_student()
+    screen.destroy()
+
+    indexing = studentTable.focus()
+    content = studentTable.item(indexing)
+    listdata = content['values']
+    idEntry.insert(0, listdata[0])
+    nameEntry.insert(0, listdata[1])
+    phoneEntry.insert(0, listdata[2])
+    emailEntry.insert(0, listdata[3])
+    addressEntry.insert(0, listdata[4])
+    genderEntry.insert(0, listdata[5])
+    dobEntry.insert(0, listdata[6])
+
+
 def show_student():
     query = 'select * from student'
     mycursor.execute(query)
@@ -35,148 +106,54 @@ def delete_student():
     show_student()
 
 
-def search_student():
-    def search_data():
-        query = ('select * from student where id=%s OR name=%s OR email=%s OR mobile=%s OR address=%s OR gender=%s OR '
-                 'dob=%s')
-        mycursor.execute(query, (
-            idEntry.get(), nameEntry.get(), emailEntry.get(), phoneEntry.get(), addressEntry.get(),
-            genderEntry.get(), dobEntry.get()))
-        studentTable.delete(*studentTable.get_children())
+def search_data():
+    query = ('select * from student where id=%s OR name=%s OR email=%s OR mobile=%s OR address=%s OR gender=%s OR '
+             'dob=%s')
+    mycursor.execute(query, (
+        idEntry.get(), nameEntry.get(), emailEntry.get(), phoneEntry.get(), addressEntry.get(),
+        genderEntry.get(), dobEntry.get()))
+    studentTable.delete(*studentTable.get_children())
+    fetched_data = mycursor.fetchall()
+    for data in fetched_data:
+        studentTable.insert('', END, values=data)  # atomatski pretvara u listu
+
+
+def add_data():
+    if (idEntry.get() == '' or nameEntry.get() == '' or phoneEntry.get() == '' or emailEntry.get() == ''
+            or addressEntry.get() == '' or genderEntry.get() == '' or dobEntry.get() == ''):
+        messagebox.showerror('Error', 'All fields are required!!!', parent=screen)
+    else:
+        try:
+            query = 'insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s)'
+            mycursor.execute(query,
+                             (
+                                 idEntry.get(), nameEntry.get(), phoneEntry.get(), emailEntry.get(),
+                                 addressEntry.get(),
+                                 genderEntry.get(), dobEntry.get(), currentdate, currenttime))
+            conn.commit()  # execute zapis prem bazi
+            result = messagebox.askyesno('Data Entry',
+                                         'Data added successfully. Do you want to clean the form')  # oš očistiti
+            # formu?
+            if result:
+                idEntry.delete(0, END)
+                nameEntry.delete(0, END)
+                phoneEntry.delete(0, END)
+                emailEntry.delete(0, END)
+                addressEntry.delete(0, END)
+                genderEntry.delete(0, END)
+                dobEntry.delete(0, END)
+            else:
+                pass
+        except:
+            messagebox.showerror('Error', 'Id already exist', parent=screen)
+            return
+
+        query = 'select * from student'
+        mycursor.execute(query)
         fetched_data = mycursor.fetchall()
+        studentTable.delete(*studentTable.get_children())
         for data in fetched_data:
-            studentTable.insert('', END, values=data)  # atomatski pretvara u listu
-
-    search_window = Toplevel()
-    search_window.grab_set()  # ako kliknem izvan prozora neće pasti iza
-    search_window.resizable(False, False)
-    search_window.geometry('480x550+730+230')
-    search_window.title('Search Student')
-    search_window.resizable(False, False)
-
-    idLabel = Label(search_window, text='Id', font=('arial', 20))
-    idLabel.grid(row=0, column=0, padx=30, pady=15, sticky="w")
-    idEntry = Entry(search_window, font=('Helvetica', 15, 'bold'), bd=2)
-    idEntry.grid(row=0, column=1, pady=15)
-
-    nameLabel = Label(search_window, text='Name', font=('arial', 20))
-    nameLabel.grid(row=1, column=0, padx=30, pady=15, sticky="w")
-    nameEntry = Entry(search_window, font=('Helvetica', 15, 'bold'), bd=2)
-    nameEntry.grid(row=1, column=1, pady=15)
-
-    emailLabel = Label(search_window, text='Email', font=('arial', 20))
-    emailLabel.grid(row=3, column=0, padx=30, pady=15, sticky="w")
-    emailEntry = Entry(search_window, font=('Helvetica', 15, 'bold'), bd=2)
-    emailEntry.grid(row=3, column=1, pady=15)
-
-    phoneLabel = Label(search_window, text='Phone', font=('arial', 20))
-    phoneLabel.grid(row=2, column=0, padx=30, pady=15, sticky="w")
-    phoneEntry = Entry(search_window, font=('Helvetica', 15, 'bold'), bd=2)
-    phoneEntry.grid(row=2, column=1, pady=15)
-
-    addressLabel = Label(search_window, text='Address', font=('arial', 20))
-    addressLabel.grid(row=4, column=0, padx=30, pady=15, sticky="w")
-    addressEntry = Entry(search_window, font=('Helvetica', 15, 'bold'), bd=2)
-    addressEntry.grid(row=4, column=1, pady=15)
-
-    genderLabel = Label(search_window, text='Gender', font=('arial', 20))
-    genderLabel.grid(row=5, column=0, padx=30, pady=15, sticky="w")
-    genderEntry = Entry(search_window, font=('Helvetica', 15, 'bold'), bd=2)
-    genderEntry.grid(row=5, column=1, pady=15)
-
-    dobLabel = Label(search_window, text='DOB', font=('arial', 20))
-    dobLabel.grid(row=6, column=0, padx=30, pady=15, sticky="w")
-    dobEntry = Entry(search_window, font=('Helvetica', 15, 'bold'), bd=2)
-    dobEntry.grid(row=6, column=1, pady=15)
-
-    search_student_button = ttk.Button(search_window, text="Search Student", command=search_data)
-    search_student_button.grid(row=7, column=1)
-
-
-def add_student():
-    def add_data():
-        if (idEntry.get() == '' or nameEntry.get() == '' or phoneEntry.get() == '' or emailEntry.get() == ''
-                or addressEntry.get() == '' or genderEntry.get() == '' or dobEntry.get() == ''):
-            messagebox.showerror('Error', 'All fields are required!!!', parent=add_window)
-        else:
-            currentdate = time.strftime('%d.%m.%Y')
-            currenttime = time.strftime('%H:%M:%S')
-            try:
-                query = 'insert into student values(%s,%s,%s,%s,%s,%s,%s,%s,%s)'
-                mycursor.execute(query,
-                                 (
-                                     idEntry.get(), nameEntry.get(), phoneEntry.get(), emailEntry.get(),
-                                     addressEntry.get(),
-                                     genderEntry.get(), dobEntry.get(), currentdate, currenttime))
-                conn.commit()  # execute zapis prem bazi
-                result = messagebox.askyesno('Data Entry',
-                                             'Data added successfully. Do you want to clean the form')  # oš očistiti
-                # formu?
-                if result:
-                    idEntry.delete(0, END)
-                    nameEntry.delete(0, END)
-                    phoneEntry.delete(0, END)
-                    emailEntry.delete(0, END)
-                    addressEntry.delete(0, END)
-                    genderEntry.delete(0, END)
-                    dobEntry.delete(0, END)
-                else:
-                    pass
-            except:
-                messagebox.showerror('Error', 'Id already exist', parent=add_window)
-                return
-
-            query = 'select * from student'
-            mycursor.execute(query)
-            fetched_data = mycursor.fetchall()
-            studentTable.delete(*studentTable.get_children())
-            for data in fetched_data:
-                studentTable.insert('', END, values=data)
-
-    add_window = Toplevel()
-    add_window.grab_set()  # ako kliknem izvan prozora neće pasti iza
-    add_window.resizable(False, False)
-    add_window.geometry('480x550+730+230')
-    add_window.title('Add student')
-    add_window.resizable(False, False)
-
-    idLabel = Label(add_window, text='Id', font=('arial', 20))
-    idLabel.grid(row=0, column=0, padx=30, pady=15, sticky="w")
-    idEntry = Entry(add_window, font=('Helvetica', 15, 'bold'), bd=2)
-    idEntry.grid(row=0, column=1, pady=15)
-
-    nameLabel = Label(add_window, text='Name', font=('arial', 20))
-    nameLabel.grid(row=1, column=0, padx=30, pady=15, sticky="w")
-    nameEntry = Entry(add_window, font=('Helvetica', 15, 'bold'), bd=2)
-    nameEntry.grid(row=1, column=1, pady=15)
-
-    phoneLabel = Label(add_window, text='Phone', font=('arial', 20))
-    phoneLabel.grid(row=2, column=0, padx=30, pady=15, sticky="w")
-    phoneEntry = Entry(add_window, font=('Helvetica', 15, 'bold'), bd=2)
-    phoneEntry.grid(row=2, column=1, pady=15)
-
-    emailLabel = Label(add_window, text='Email', font=('arial', 20))
-    emailLabel.grid(row=3, column=0, padx=30, pady=15, sticky="w")
-    emailEntry = Entry(add_window, font=('Helvetica', 15, 'bold'), bd=2)
-    emailEntry.grid(row=3, column=1, pady=15)
-
-    addressLabel = Label(add_window, text='Address', font=('arial', 20))
-    addressLabel.grid(row=4, column=0, padx=30, pady=15, sticky="w")
-    addressEntry = Entry(add_window, font=('Helvetica', 15, 'bold'), bd=2)
-    addressEntry.grid(row=4, column=1, pady=15)
-
-    genderLabel = Label(add_window, text='Gender', font=('arial', 20))
-    genderLabel.grid(row=5, column=0, padx=30, pady=15, sticky="w")
-    genderEntry = Entry(add_window, font=('Helvetica', 15, 'bold'), bd=2)
-    genderEntry.grid(row=5, column=1, pady=15)
-
-    dobLabel = Label(add_window, text='DOB', font=('arial', 20))
-    dobLabel.grid(row=6, column=0, padx=30, pady=15, sticky="w")
-    dobEntry = Entry(add_window, font=('Helvetica', 15, 'bold'), bd=2)
-    dobEntry.grid(row=6, column=1, pady=15)
-
-    add_student_button = ttk.Button(add_window, text="Add Student", command=add_data)
-    add_student_button.grid(row=7, column=1)
+            studentTable.insert('', END, values=data)
 
 
 def connect_database():
@@ -236,6 +213,7 @@ def connect_database():
 
 
 def clock():
+    global currentdate, currenttime
     currentdate = time.strftime('%d.%m.%Y')
     currenttime = time.strftime('%H:%M:%S')
     datetimeLabel.config(text=f'Date: {currentdate}\nTime: {currenttime}')
@@ -285,16 +263,19 @@ logo_image = PhotoImage(file='images/students.png')
 logo_Label = Label(leftFrame, image=logo_image)
 logo_Label.grid(row=0, column=0)
 
-addstudentButton = ttk.Button(leftFrame, text='Add Student', width=13, state=DISABLED, command=add_student)
+addstudentButton = ttk.Button(leftFrame, text='Add Student', width=13, state=DISABLED,
+                              command=lambda: toplevel_data('Add Student', 'Add Student', add_data))
 addstudentButton.grid(row=1, column=0, pady=10)
 
-searchstudentButton = ttk.Button(leftFrame, text='Search Student', width=13, state=DISABLED, command=search_student)
+searchstudentButton = ttk.Button(leftFrame, text='Search Student', width=13, state=DISABLED,
+                                 command=lambda: toplevel_data('Search Student', 'Search Student', search_data))
 searchstudentButton.grid(row=2, column=0, pady=10)
 
 deletestudentButton = ttk.Button(leftFrame, text='Delete Student', width=13, state=DISABLED, command=delete_student)
 deletestudentButton.grid(row=3, column=0, pady=10)
 
-updatestudentButton = ttk.Button(leftFrame, text='Update Student', width=13, state=DISABLED)
+updatestudentButton = ttk.Button(leftFrame, text='Edit Student', width=13, state=DISABLED,
+                                 command=lambda: toplevel_data('Edit Student', 'Update Student', update_data))
 updatestudentButton.grid(row=4, column=0, pady=10)
 
 showstudentButton = ttk.Button(leftFrame, text='Show Student', width=13, state=DISABLED, command=show_student)
@@ -350,7 +331,6 @@ studentTable.column('AddedTime', width=100, anchor=CENTER)
 style = ttk.Style()
 style.configure('Treeview', rowheight=30, font=('helvetica', 11, 'bold'), background='light gray',
                 fieldbackground='grey')
-
+# style.configure('Treeview.Heading', font=('helvetica', 12, 'bold'))
 studentTable.config(show="headings")
-
 root.mainloop()
