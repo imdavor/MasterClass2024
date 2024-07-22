@@ -1,8 +1,31 @@
 import time
 from tkinter import *
-from tkinter import ttk, Entry, messagebox
+from tkinter import ttk, Entry, messagebox, filedialog
+
+import pandas
 import pymysql
 import ttkthemes
+
+
+def exit_app():
+    result = messagebox.askyesno('Confirm', 'Do you want to exit?')
+    if result:
+        root.destroy()
+    else:
+        pass
+
+
+def export_data():
+    url = filedialog.asksaveasfilename(defaultextension='.csv')
+    indexing = studentTable.get_children()  # pokupi indexe od podataka
+    newlist = []  # kreiraj novu praznu listu
+    for index in indexing:
+        content = studentTable.item(index)  # stavi svaki podatak u content
+        datalist = content['values']  # sve podatke trpaj u listu
+        newlist.append(datalist)  # u novu listu trpaj listu
+    table = pandas.DataFrame(newlist, columns=['Id', 'Name', 'Mobile', 'Email', 'Address', 'Gender', 'DOB', 'Date Added', 'Time Added'])
+    table.to_csv(url, index=False)
+    messagebox.showinfo('Success', 'Data is saved successfully')
 
 
 def toplevel_data(title, button_text, command):
@@ -24,15 +47,15 @@ def toplevel_data(title, button_text, command):
     nameEntry = Entry(screen, font=('Helvetica', 15, 'bold'), bd=2)
     nameEntry.grid(row=1, column=1, pady=15)
 
-    emailLabel = Label(screen, text='Email', font=('arial', 20))
-    emailLabel.grid(row=3, column=0, padx=30, pady=15, sticky="w")
-    emailEntry = Entry(screen, font=('Helvetica', 15, 'bold'), bd=2)
-    emailEntry.grid(row=3, column=1, pady=15)
-
     phoneLabel = Label(screen, text='Phone', font=('arial', 20))
     phoneLabel.grid(row=2, column=0, padx=30, pady=15, sticky="w")
     phoneEntry = Entry(screen, font=('Helvetica', 15, 'bold'), bd=2)
     phoneEntry.grid(row=2, column=1, pady=15)
+
+    emailLabel = Label(screen, text='Email', font=('arial', 20))
+    emailLabel.grid(row=3, column=0, padx=30, pady=15, sticky="w")
+    emailEntry = Entry(screen, font=('Helvetica', 15, 'bold'), bd=2)
+    emailEntry.grid(row=3, column=1, pady=15)
 
     addressLabel = Label(screen, text='Address', font=('arial', 20))
     addressLabel.grid(row=4, column=0, padx=30, pady=15, sticky="w")
@@ -49,8 +72,21 @@ def toplevel_data(title, button_text, command):
     dobEntry = Entry(screen, font=('Helvetica', 15, 'bold'), bd=2)
     dobEntry.grid(row=6, column=1, pady=15)
 
-    update_student_button = ttk.Button(screen, text=button_text, command=command)
-    update_student_button.grid(row=7, column=1)
+    student_button = ttk.Button(screen, text=button_text, command=command)
+    student_button.grid(row=7, column=1)
+
+    if title == 'Edit Student':
+        indexing = studentTable.focus()
+
+        content = studentTable.item(indexing)
+        listdata = content['values']
+        idEntry.insert(0, listdata[0])
+        nameEntry.insert(0, listdata[1])
+        phoneEntry.insert(0, listdata[2])
+        emailEntry.insert(0, listdata[3])
+        addressEntry.insert(0, listdata[4])
+        genderEntry.insert(0, listdata[5])
+        dobEntry.insert(0, listdata[6])
 
 
 def update_data():
@@ -61,19 +97,8 @@ def update_data():
                              genderEntry.get(), dobEntry.get(), currentdate, currenttime, idEntry.get()))
     conn.commit()
     messagebox.showinfo('Success', f'Id {idEntry.get()} updated successfully!', parent=screen)
-    show_student()
     screen.destroy()
-
-    indexing = studentTable.focus()
-    content = studentTable.item(indexing)
-    listdata = content['values']
-    idEntry.insert(0, listdata[0])
-    nameEntry.insert(0, listdata[1])
-    phoneEntry.insert(0, listdata[2])
-    emailEntry.insert(0, listdata[3])
-    addressEntry.insert(0, listdata[4])
-    genderEntry.insert(0, listdata[5])
-    dobEntry.insert(0, listdata[6])
+    show_student()
 
 
 def show_student():
@@ -132,7 +157,7 @@ def add_data():
                                  genderEntry.get(), dobEntry.get(), currentdate, currenttime))
             conn.commit()  # execute zapis prem bazi
             result = messagebox.askyesno('Data Entry',
-                                         'Data added successfully. Do you want to clean the form')  # oš očistiti
+                                         'Data added successfully. Do you want to clean the form', parent=screen)  # oš očistiti
             # formu?
             if result:
                 idEntry.delete(0, END)
@@ -186,6 +211,7 @@ def connect_database():
         updatestudentButton.config(state=NORMAL)
         showstudentButton.config(state=NORMAL)
         exportstudentButton.config(state=NORMAL)
+        show_student()
 
     connectWindow = Toplevel()
     connectWindow.grab_set()  # ako kliknem izvan prozora neće pasti iza
@@ -278,13 +304,13 @@ updatestudentButton = ttk.Button(leftFrame, text='Edit Student', width=13, state
                                  command=lambda: toplevel_data('Edit Student', 'Update Student', update_data))
 updatestudentButton.grid(row=4, column=0, pady=10)
 
-showstudentButton = ttk.Button(leftFrame, text='Show Student', width=13, state=DISABLED, command=show_student)
+showstudentButton = ttk.Button(leftFrame, text='Show Students', width=13, state=DISABLED, command=show_student)
 showstudentButton.grid(row=5, column=0, pady=10)
 
-exportstudentButton = ttk.Button(leftFrame, text='Export Student', width=13, state=DISABLED)
+exportstudentButton = ttk.Button(leftFrame, text='Export Student', width=13, state=DISABLED, command=export_data)
 exportstudentButton.grid(row=6, column=0, pady=10)
 
-exitButton = ttk.Button(leftFrame, text='Exit', width=13)
+exitButton = ttk.Button(leftFrame, text='Exit', width=13, command=exit_app)
 exitButton.grid(row=7, column=0, pady=10)
 
 # sada radimo drugi frame i treeview pogled(ustvari tablica za pregled podataka)
