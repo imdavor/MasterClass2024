@@ -49,20 +49,8 @@ def toplevel_data(title, button_text, command):
     dobEntry = Entry(screen, font=('Helvetica', 15, 'bold'), bd=2)
     dobEntry.grid(row=6, column=1, pady=15)
 
-    student_button = ttk.Button(screen, text=button_text, command=command)
-    student_button.grid(row=7, column=1)
-
-    if title == 'Edit Student':
-        indexing = studentTable.focus()
-        content = studentTable.item(indexing)
-        listdata = content['values']
-        idEntry.insert(0, listdata[0])
-        nameEntry.insert(0, listdata[1])
-        phoneEntry.insert(0, listdata[2])
-        emailEntry.insert(0, listdata[3])
-        addressEntry.insert(0, listdata[4])
-        genderEntry.insert(0, listdata[5])
-        dobEntry.insert(0, listdata[6])
+    update_student_button = ttk.Button(screen, text=button_text, command=command)
+    update_student_button.grid(row=7, column=1)
 
 
 def update_data():
@@ -75,6 +63,17 @@ def update_data():
     messagebox.showinfo('Success', f'Id {idEntry.get()} updated successfully!', parent=screen)
     show_student()
     screen.destroy()
+
+    indexing = studentTable.focus()
+    content = studentTable.item(indexing)
+    listdata = content['values']
+    idEntry.insert(0, listdata[0])
+    nameEntry.insert(0, listdata[1])
+    phoneEntry.insert(0, listdata[2])
+    emailEntry.insert(0, listdata[3])
+    addressEntry.insert(0, listdata[4])
+    genderEntry.insert(0, listdata[5])
+    dobEntry.insert(0, listdata[6])
 
 
 def show_student():
@@ -187,7 +186,6 @@ def connect_database():
         updatestudentButton.config(state=NORMAL)
         showstudentButton.config(state=NORMAL)
         exportstudentButton.config(state=NORMAL)
-        show_student()
 
     connectWindow = Toplevel()
     connectWindow.grab_set()  # ako kliknem izvan prozora neće pasti iza
