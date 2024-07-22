@@ -1,8 +1,31 @@
 import time
 from tkinter import *
-from tkinter import ttk, Entry, messagebox
+from tkinter import ttk, Entry, messagebox, filedialog
 import pymysql
 import ttkthemes
+import pandas
+import openpyxl
+
+
+def export_app():
+    url = filedialog.asksaveasfilename(defaultextension='.xlsx')
+    indexing = studentTable.get_children()
+    newlist = []
+    for index in indexing:
+        content = studentTable.item(index)
+        datalist = content['values']
+        newlist.append(datalist)
+
+    table = pandas.DataFrame(newlist, columns=['Id', 'Name', 'Mobile', 'Email', 'Address', 'Gender', 'DOB',
+                                               'Date Added', 'Time Added'])
+    table.to_excel(url, index=False)
+    messagebox.showinfo('Success', 'Data saved successfully!')
+
+
+def exit_app():
+    result = messagebox.askyesno('Exit application', 'Are you sure you want to quit application?')
+    if result:
+        exit()
 
 
 def toplevel_data(title, button_text, command):
@@ -281,10 +304,10 @@ updatestudentButton.grid(row=4, column=0, pady=10)
 showstudentButton = ttk.Button(leftFrame, text='Show Student', width=13, state=DISABLED, command=show_student)
 showstudentButton.grid(row=5, column=0, pady=10)
 
-exportstudentButton = ttk.Button(leftFrame, text='Export Student', width=13, state=DISABLED)
+exportstudentButton = ttk.Button(leftFrame, text='Export Student', width=13, state=DISABLED, command=export_app)
 exportstudentButton.grid(row=6, column=0, pady=10)
 
-exitButton = ttk.Button(leftFrame, text='Exit', width=13)
+exitButton = ttk.Button(leftFrame, text='Exit', width=13, command=exit_app)
 exitButton.grid(row=7, column=0, pady=10)
 
 # sada radimo drugi frame i treeview pogled(ustvari tablica za pregled podataka)
