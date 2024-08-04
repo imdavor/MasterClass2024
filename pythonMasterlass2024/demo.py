@@ -1,111 +1,172 @@
-# break
-counter = 1
+# creating a list of products, displaying cart items nicely
+products = [
+    {'name': 'Smartphone', 'price': 500, 'description': 'nice device'},
+    {'name': 'Tablet', 'price': 1500, 'description': 'nice bigger device'},
+    {'name': 'TV', 'price': 3500, 'description': 'device to watch sports'},
+    {'name': 'Car', 'price': 23500, 'description': 'device get from a point to b point'}
+]
+cart = []
+while True:
+    choice = input('Continue shopping? ')
+    if choice == 'yes':
+        print('Here is the list of products to buy:')
+        for index, product in enumerate(products):
+            print(f'{index}: {product['name']} | {product['description']} | {product['price']} €')
+        product_id = int(input('Enter ID of product you want to add to cart: '))
+        cart.append(products[product_id])
+        print(f'Current cart content is ')
+        for product in cart:
+            print(f'{product['name']} | {product['price']} €')
+    else:
+        break
+
+print(f'Your content of cart is {cart}')
+
+"""
+# adding items to cart using while loop
+cart = []
+
+while True:
+    choice = input('Do you want to add item to cart? ')
+    if choice == 'yes':
+        item = input('Item to add: ')
+        cart.append(item)
+    else:
+        break
+print(cart)
+"""
+"""
+# adding items to cart using for loop
+cart = []
+
+n = int(input('How many items you want to add to cart: '))
+for x in range(n):
+    item = input('Add item to cart: ')
+    cart.append(item)
+    print(cart)
+"""
+"""
+# continue
+counter = 0
+while counter <= 10:
+    counter += 1
+    if counter == 5:
+        continue
+    print(counter)
+
+"""
+"""
+# while loop with break
+counter = 0
+
 while counter <= 10:
     print(counter)
     if counter == 5:
         break
     counter += 1
-
 """
-# while loop
-counter = 1
-while counter <= 10:
-    print(counter)
-    counter += 1
+"""
+# looping trough dictionary
 
+people = {'John': 32, 'Rob': 40, 'Tim': 20}
+
+for person in people:
+    # print(person)
+    print(people[person])
+
+""""""
+# looping trough list
+fruits = ['Mango', 'Banana', 'Orange', 'Apple']
+
+for item in fruits:
+    print(item)
+"""
+"""
+# FOR loop
+for x in range(1, 11):
+    print(x)
+"""
+"""
+# range
+# numbers = list(range(11))
+# numbers = list(range(1, 11))
+numbers = list(range(2, 102, 2))  # 3. broj je step
+
+print(numbers)
+"""
 """
 # nested if
+a = 6
+b = 14
 
-"""# elif
-marks = int(input('Unesi bodove: '))
-
-if marks >= 90:
-    print('Ocjena 5')
-elif marks >= 80:
-    print('Ocjena 4')
-elif marks >= 70:
-    print('Ocjena 3')
-elif marks >= 50:
-    print('Ocjena 2')
+if a > 5:
+    if b > 15:
+        print('A is >5 & B je >15')
+    else:
+        print('B nije >15 ali a>5')
 else:
-    print('Ocjena 1')"""
+    print('A nije > 5')
+"""
+"""
+# add remove set
+seta = {1, 2, 3, 4, 5}
+# seta.discard(2)
+# print(seta)
+# seta.pop()
+seta.clear()
+print(seta)
+"""
+"""
+# set operations
+seta = {1, 2, 3, 4, 5}
+setb = {4, 5, 6, 7, 8, 9}
+print(seta | setb)
+print(seta & setb)
+print(seta - setb)
+print(setb - seta)
+print(setb ^ seta)
+"""
+"""
+# set
+number1 = set([1, 2, 3, 4, 5, 6])
+number2 = {1, 3, 11, 2, 5, 6, 4}
+emptySet = set()
+print(number2)
+print(type(emptySet))
+"""
+"""
+# dictionary popout
+prices = {'iphone': 400, 'ipad': 500, 'android': 600}
+a = prices.pop('iphone')
+print(prices)
+"""
+"""
+# BMI = weight in kh / (height in m)^2
 
-"""#  if
-age_input = int(input('Enter your age: '))
+weight = float(input('Enter your weight in kg: '))
+height = float(input('Enter your height in meters: '))
 
-if age_input > 18:
-    print('You are adult')
-else:
-    print('You are NOT adult')
-"""
-"""
-# Coding Challenge 2
+bmi = weight / height ** 2
 
-fav_food = ['apple', 'mayo', 'peach', 'milk', 'bread']
-print(fav_food[2])
-fav_food.append('coffee')
-print(fav_food)
-# insert an element named tacos at the 3rd index position of the list and print out the list elements.
-index = fav_food.index('peach')
-fav_food.insert(index + 1, 'taco')
-print(fav_food)"""
-
-"""
-products = {'phone': 100, 'Tablet': 200, 'Laptop': 300, 'journal': 40}
-
-
-print(products)"""
-"""
-# change value in dictionary
-product_price_change = input('Enter product that you want to change price: ')
-price_change = input('Enter new price: ')
-products[product_price_change] = price_change
-print(f'New price for {product_price_change} is {price_change} ')
-print(products)
-"""
-"""
-# delete products from dictionary
-delete_product = input('Enter product that you want to delete: ')
-del products[delete_product]
-print(products)
-"""
-"""product = input('Enter product to check the price: ')
-print(f'Price of {product} is {products[product]}')"""
-"""
-new_product = input('Enter a new product to add: ')
-new_product_price = int(input('Enter a new product price: '))
-products[new_product] = new_product_price
-print(f'Added {new_product} with price {new_product_price} to a list. ew list {products}')
-"""
-"""
-# adding items top position in list
-products = ['phone', 'Tablet', 'Laptop', 'journal']
-print(f'Current list of items: {products}')
-
-add_item = input('Add item to list: ')
-add_after = input(f'After which product yoo want to place {products}: ')
-index = products.index(add_after)
-products.insert(index + 1, add_item)
-print(f'Current list of items: {products}')
-
-"""
-"""
-# removing-adding items from list
-products = ['phone', 'Tablet', 'Laptop', 'journal']
-print(f'Current list of items: {products}')
-
-remove_item = input('Remove item from list: ')
-products.remove(remove_item)
-print(f'Current list of items: {products}')
-
-add_item = input('Add item to list: ')
-products.append(add_item)
-print(f'Current list of items: {products}')
+print(f'Your BMI is {bmi}.')
 """
 
 """
-# search item
-products = ['phone', 'Tablet', 'Laptop', 'journal']
-item = input('Find product in list: ')
-print(item in products)
+firstname = input('Enter your first name: ')
+lastname = input('Enter your last name: ')
+
+username = firstname + ' ' + lastname
+emailAddress = firstname + '.' + lastname + '@gmail.com'
+print(f'Your username is: {username}')
+print(f'Your email address is: {emailAddress.lower()}')
+"""
+"""'
+# simple interest calculator
+principal = int(input('Enter the amount of borrowed: '))
+years = float(input('Enter the period in years: '))
+rate = float(input('Enter the rate of interest: '))
+
+interest = principal * years * rate / 100
+
+print(f'Interest rate for {years} years is {rate}%')
 """
