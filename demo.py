@@ -15,10 +15,19 @@ while True:
         for index, product in enumerate(products):
             print(f'{index}: {product['name']} | {product['description']} | {product['price']} €')
         product_id = int(input('Enter ID of product you want to add to cart: '))
-        cart.append(products[product_id])
+
+        # check if product is already in the cart
+        if products[product_id] in cart:
+            products[product_id]['quantity'] += 1
+        else:
+            products[product_id]['quantity'] = 1
+            cart.append(products[product_id])
+
         print(f'Current cart content is ')
         for product in cart:
-            print(f'{product['name']} | {product['price']} €')
+            print(
+                f'{product['name']} | {product['price']} € | QTY: {product['quantity']} pcs')
+            print(f'Total amount is: {product['price'] * product['quantity']}')
     else:
         break
 
