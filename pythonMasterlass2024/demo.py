@@ -1,3 +1,5 @@
+# test
+
 # creating a list of products, displaying cart items nicely
 products = [
     {'name': 'Smartphone', 'price': 500, 'description': 'nice device'},
