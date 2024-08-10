@@ -1,6 +1,67 @@
 # razmak
 
-# creating a list of products, displaying cart items nicely
+
+# Passing List To A Function
+
+
+"""
+# Making A Function Return Multiple Values
+pi = 3.14
+
+
+def circle(r):
+    area = pi * r * r
+    circumference = pi * 2 * r
+    return area, circumference
+
+
+a, c = circle(10)
+print(f'area is: {a}, circumference is: {c}')
+"""
+# nesting functions
+"""def area(radius, pi=3.14):
+    result = pi * radius * radius
+    return result
+
+
+def cost(circle_area, csm):
+    total_cost = circle_area * csm
+    return total_cost
+
+
+print(cost(area(10, 3.15), 2))
+"""
+# funkcija return value
+
+"""def area(radius, pi=3.14):
+    result = pi * radius * radius
+    return result
+
+
+def cost(circle_area, csm):
+    total_cost = circle_area * csm
+    return total_cost
+
+
+calculated_area = area(10, 3.15)
+tc = cost(calculated_area, 2)
+print(tc)"""
+
+# default parameters
+"""def area(radius, pi=3.14):
+    print(pi * radius * radius)
+
+
+area(10)
+"""
+# functions
+"""def speed(distance, time):
+    print(distance / time)
+
+
+speed(distance=100, time=2)
+"""
+"""# creating a list of products, displaying cart items nicely
 products = [
     {'name': 'Smartphone', 'price': 500, 'description': 'nice device'},
     {'name': 'Tablet', 'price': 1500, 'description': 'nice bigger device'},
@@ -32,7 +93,7 @@ while True:
         break
 
 print(f'Your content of cart is {cart}')
-
+"""
 """
 # adding items to cart using while loop
 cart = []
