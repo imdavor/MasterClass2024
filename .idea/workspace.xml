@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3446180-e9e3-4623-b0d7-774bc69e1090" name="Changes" comment="test">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/pythonMasteclass2024.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pythonMasteclass2024.iml" afterDir="false" />
+    <list default="true" id="f3446180-e9e3-4623-b0d7-774bc69e1090" name="Changes" comment="lekcija do 101">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/demo.py" afterDir="false" />
     </list>
@@ -34,12 +32,12 @@
     &quot;assignee&quot;: &quot;imdavor&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/imdavor/MasterClass2024.git&quot;,
-    &quot;accountId&quot;: &quot;7642ced5-cc7a-422e-a1f1-426983da144b&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/imdavor/MasterClass2024.git",
+    "accountId": "13dbcfea-af6e-4fc0-a47e-d1a273b947db"
   }
-}</component>
+}]]></component>
   <component name="OptimizeOnSaveOptions">
     <option name="myRunOnSave" value="true" />
   </component>
@@ -115,7 +113,15 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1722765174544</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="lekcija do 101">
+      <option name="closed" value="true" />
+      <created>1723289915280</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1723289915280</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -131,6 +137,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="lekcija do 101" />
+    <option name="LAST_COMMIT_MESSAGE" value="lekcija do 101" />
   </component>
 </project>

@@ -2,7 +2,19 @@
 
 
 # Passing List To A Function
+scores = [1, 2, 3, 4, 5]
 
+
+def add(lista):
+    total = 0
+    for number in scores:
+        # print(number)
+        total += number
+    return total
+
+
+result = add(scores)
+print(result)
 
 """
 # Making A Function Return Multiple Values
