@@ -1,11 +1,105 @@
 # razmak
 
+# Variable Length Positional Arguments
+def add(*args):
+    sum = 0
+    for n in args:
+        sum += n
+    return sum
 
+
+print(add(1, 2, 3, 4, 5))
+
+"""
+# Recursion In Python
+def factorial(number):
+    if number == 1:
+        return 1
+    else:
+        return number * factorial(number - 1)
+
+
+print(factorial(4))
+"""
+# factorial(4) => return 4 * factorial(4-1)
+# factorial(3) => return 3 * factorial(3-1)
+# factorial(2) => return 2 * factorial(2-1)
+# factorial(1) => return 1
+
+
+""""# EMI Calculator formula is: P x R x (1+R)^N / [(1+R)^N-1]
+def emi_calculator(principal, rate, time):
+    r = rate / 12 / 100
+    emi = (principal * r * (1 + r) ** time) / ((1 + r) ** time - 1)
+    return emi
+
+
+print(emi_calculator(40000, 3.73, 240))
+"""""
+"""# Function To Check Palindrome
+
+def check_palindrome(word):
+    l = len(word)
+    for i in range(l):
+        if word[i] != word[l - i - 1]:
+            return False
+    return True
+
+
+print(check_palindrome('pirriz'))
+"""
+"""
+# Check If A String Is A Palindrome
+word = 'run'
+palindrome_state = True
+word_length = len(word)
+for i in range(word_length):
+    if word[i] != word[word_length - i - 1]:
+        palindrome_state = False
+        break
+    else:
+        palindrome_state = True
+if palindrome_state:
+    print('This is THE palindrome')
+else:
+    print('This is NOT a palindrome')
+"""
+# Accessing Global Variables Inside A Function
+"""count = 12
+
+
+def increment():
+    global count
+    count += 1
+    print(count)
+
+
+increment()"""
+
+# Local & Global Variables
+
+
+# Returning List
+"""#long version
+def remove_duplicates(numbers):
+    new_list = []
+    for number in numbers:
+        if number not in new_list:
+            new_list.append(number)
+    return new_list
+"""
+
+# short version
+"""def remove_duplicates(numbers):
+    return list(set(numbers))
+
+
+myList = [1, 3, 5, 4, 56, 7, 86, 4, 9, 11, 21, 35, 22, 84, 83, 82, 25, 78, 53, 20, 11, 21]
+result = remove_duplicates(myList)
+print(sorted(result))
+"""
 # Passing List To A Function
-scores = [1, 2, 3, 4, 5]
-
-
-def add(lista):
+"""def add(lista):
     total = 0
     for number in scores:
         # print(number)
@@ -13,9 +107,10 @@ def add(lista):
     return total
 
 
+scores = [1, 2, 3, 4, 5]
 result = add(scores)
 print(result)
-
+"""
 """
 # Making A Function Return Multiple Values
 pi = 3.14
