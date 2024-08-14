@@ -1,5 +1,118 @@
 # razmak
+# Coding Challenge 4
+# Create a BMI calculator, BMI which stands for Body Mass Index can be calculated using the formula:
+# BMI = (weight in Kg)/(Height in Meters)^2.
+# Make sure to use a function which accepts the height and weight values and returns the BMI value.
+def bmi_calculator(weight, height):
+    bmi = weight / height ** 2
+    return bmi
 
+
+weight = float(input('Enter weight: '))
+height = float(input('Enter height: '))
+print(f'Your BMI is {bmi_calculator(weight, height)}')
+
+"""### Solution
+def calculate_BMI(new_weight, new_height):
+    new_bmi = new_weight / (pow(new_height, 2))
+    return new_bmi
+
+
+weight = float(input('Enter weight in Kgs'))
+height = float(input('Enter height in meters'))
+bmi = calculate_BMI(weight, height)
+print(bmi)
+"""
+"""# Decorating Functions Returning Values
+def summer_total_discount(func):
+    def wrapper(price):
+        func(price)
+        return func(price / 2)
+
+    return wrapper
+
+
+@summer_total_discount
+def total(price):
+    return price
+
+print(total(50))
+"""
+# Decorating Functions Accepting Arguments
+"""def decorator(func):
+    def wrapper(*args, **kwargs):
+        print("Upper")
+        func(*args, **kwargs)
+        print("Down")
+
+    return wrapper
+
+
+@decorator
+def chocolate():
+    print("Chocolate")
+
+
+@decorator
+def cake(name):
+    print(name + ' Cake')
+
+
+chocolate()
+cake('Apple')
+"""
+# Another Way Of Using Decorator
+"""def decorator(func):
+    def wrapper():
+        print("Upper")
+        func()
+        print("Down")
+
+    return wrapper
+
+
+@decorator
+def chocolate():
+    print("Chocolate")
+
+
+@decorator
+def cake():
+    print('Cake')
+
+
+chocolate()
+cake()"""
+"""
+# Decorators
+def chocolate():
+    print("Chocolate")
+
+
+def decorator(func):
+    def wrapper():
+        print("Up")
+        func()
+        print("Down")
+
+    return wrapper
+
+
+chocolate = decorator(chocolate)
+
+chocolate()
+"""
+"""
+# Variable Length Keyword Arguments
+def products(**kwargs):
+    for key, value in kwargs.items():
+        print(key + ": " + value)
+
+
+products(name="phone", price="100")
+products(name="tv stand", price="250", description="Description")
+"""
+""""
 # Variable Length Positional Arguments
 def add(*args):
     sum = 0
@@ -9,7 +122,7 @@ def add(*args):
 
 
 print(add(1, 2, 3, 4, 5))
-
+"""""
 """
 # Recursion In Python
 def factorial(number):
