@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3446180-e9e3-4623-b0d7-774bc69e1090" name="Changes" comment="lekcije do 111">
+    <list default="true" id="f3446180-e9e3-4623-b0d7-774bc69e1090" name="Changes" comment="Coding Challenge 4">
+      <change afterPath="$PROJECT_DIR$/greet.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/demo.py" afterDir="false" />
     </list>
@@ -137,7 +138,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723587593093</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Coding Challenge 4">
+      <option name="closed" value="true" />
+      <created>1723658186106</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1723658186106</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -155,6 +164,7 @@
     <MESSAGE value="test" />
     <MESSAGE value="lekcija do 101" />
     <MESSAGE value="lekcije do 111" />
-    <option name="LAST_COMMIT_MESSAGE" value="lekcije do 111" />
+    <MESSAGE value="Coding Challenge 4" />
+    <option name="LAST_COMMIT_MESSAGE" value="Coding Challenge 4" />
   </component>
 </project>
