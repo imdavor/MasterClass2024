@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3446180-e9e3-4623-b0d7-774bc69e1090" name="Changes" comment="demo do 119 + novi demo">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/pythonMasteclass2024.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pythonMasteclass2024.iml" afterDir="false" />
+    <list default="true" id="f3446180-e9e3-4623-b0d7-774bc69e1090" name="Changes" comment="do 136">
+      <change afterPath="$PROJECT_DIR$/data.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/demo-136.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/demo.py" afterDir="false" />
     </list>
@@ -34,12 +34,12 @@
     &quot;assignee&quot;: &quot;imdavor&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/imdavor/MasterClass2024.git",
-    "accountId": "50ebeb2d-25fc-422a-aebc-f86e63cd212b"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/imdavor/MasterClass2024.git&quot;,
+    &quot;accountId&quot;: &quot;50ebeb2d-25fc-422a-aebc-f86e63cd212b&quot;
   }
-}]]></component>
+}</component>
   <component name="OptimizeOnSaveOptions">
     <option name="myRunOnSave" value="true" />
   </component>
@@ -162,7 +162,14 @@
       <option name="project" value="LOCAL" />
       <updated>1723716170359</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL−00007" summary="do 136">
+      <option name="closed" value="true" />
+      <created>1724075111350</created>
+      <option name="number" value="LOCAL−00007" />
+      <option name="presentableId" value="LOCAL−00007" />
+      <updated>1724075111350</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -182,6 +189,7 @@
     <MESSAGE value="lekcije do 111" />
     <MESSAGE value="Coding Challenge 4" />
     <MESSAGE value="demo do 119 + novi demo" />
-    <option name="LAST_COMMIT_MESSAGE" value="demo do 119 + novi demo" />
+    <MESSAGE value="do 136" />
+    <option name="LAST_COMMIT_MESSAGE" value="do 136" />
   </component>
 </project>
