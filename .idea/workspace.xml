@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3446180-e9e3-4623-b0d7-774bc69e1090" name="Changes" comment="dodatak" />
+    <list default="true" id="f3446180-e9e3-4623-b0d7-774bc69e1090" name="Changes" comment="test">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/pythonMasteclass2024.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pythonMasteclass2024.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/demo.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -110,14 +115,7 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1722765174544</updated>
     </task>
-    <task id="LOCAL−00002" summary="dodatak">
-      <option name="closed" value="true" />
-      <created>1724173588030</created>
-      <option name="number" value="LOCAL−00002" />
-      <option name="presentableId" value="LOCAL−00002" />
-      <updated>1724173588030</updated>
-    </task>
-    <option name="localTasksCounter" value="3" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -133,7 +131,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
-    <MESSAGE value="dodatak" />
-    <option name="LAST_COMMIT_MESSAGE" value="dodatak" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
 </project>
