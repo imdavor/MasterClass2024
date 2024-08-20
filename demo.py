@@ -1,5 +1,5 @@
 # 142. Readline & Readlines
-
+# "
 
 # 141. Opening Files Using With
 # with se koristi za otvraanje fileova i zatvaranje da ne moramo koristiti file.close svaki put
