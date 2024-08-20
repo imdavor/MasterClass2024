@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f3446180-e9e3-4623-b0d7-774bc69e1090" name="Changes" comment="do 136">
-      <change afterPath="$PROJECT_DIR$/data.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo-136.py" afterDir="false" />
+    <list default="true" id="f3446180-e9e3-4623-b0d7-774bc69e1090" name="Changes" comment="test">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/pythonMasteclass2024.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pythonMasteclass2024.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo.py" beforeDir="false" afterPath="$PROJECT_DIR$/demo.py" afterDir="false" />
     </list>
@@ -37,7 +37,7 @@
   <component name="GithubPullRequestsUISettings">{
   &quot;selectedUrlAndAccountId&quot;: {
     &quot;url&quot;: &quot;https://github.com/imdavor/MasterClass2024.git&quot;,
-    &quot;accountId&quot;: &quot;50ebeb2d-25fc-422a-aebc-f86e63cd212b&quot;
+    &quot;accountId&quot;: &quot;7642ced5-cc7a-422e-a1f1-426983da144b&quot;
   }
 }</component>
   <component name="OptimizeOnSaveOptions">
@@ -56,22 +56,15 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
-    &quot;Python.demo-119.executor&quot;: &quot;Run&quot;,
     &quot;Python.demo.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Dora/Desktop/PycharmProjects&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;actions.on.save&quot;
   }
 }</component>
-  <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Dora\Desktop\PycharmProjects" />
-    </key>
-  </component>
   <component name="RunManager">
-    <configuration name="demo-119" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="demo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="pythonMasteclass2024" />
       <option name="ENV_FILES" value="" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -84,7 +77,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Users\Dora\Desktop\PycharmProjects\demo-119.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/demo.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -95,7 +88,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.demo-119" />
+        <item itemvalue="Python.demo" />
       </list>
     </recent_temporary>
   </component>
@@ -122,54 +115,7 @@
       <option name="presentableId" value="LOCAL−00001" />
       <updated>1722765174544</updated>
     </task>
-    <task id="LOCAL-00002" summary="lekcija do 101">
-      <option name="closed" value="true" />
-      <created>1723289915280</created>
-      <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
-      <option name="project" value="LOCAL" />
-      <updated>1723289915280</updated>
-    </task>
-    <task id="LOCAL-00003" summary="lekcija do 101">
-      <option name="closed" value="true" />
-      <created>1723291310095</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1723291310095</updated>
-    </task>
-    <task id="LOCAL-00004" summary="lekcije do 111">
-      <option name="closed" value="true" />
-      <created>1723587593092</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1723587593093</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Coding Challenge 4">
-      <option name="closed" value="true" />
-      <created>1723658186106</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1723658186106</updated>
-    </task>
-    <task id="LOCAL-00006" summary="demo do 119 + novi demo">
-      <option name="closed" value="true" />
-      <created>1723716170359</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1723716170359</updated>
-    </task>
-    <task id="LOCAL−00007" summary="do 136">
-      <option name="closed" value="true" />
-      <created>1724075111350</created>
-      <option name="number" value="LOCAL−00007" />
-      <option name="presentableId" value="LOCAL−00007" />
-      <updated>1724075111350</updated>
-    </task>
-    <option name="localTasksCounter" value="8" />
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -185,11 +131,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test" />
-    <MESSAGE value="lekcija do 101" />
-    <MESSAGE value="lekcije do 111" />
-    <MESSAGE value="Coding Challenge 4" />
-    <MESSAGE value="demo do 119 + novi demo" />
-    <MESSAGE value="do 136" />
-    <option name="LAST_COMMIT_MESSAGE" value="do 136" />
+    <option name="LAST_COMMIT_MESSAGE" value="test" />
   </component>
 </project>
