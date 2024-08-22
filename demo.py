@@ -1,44 +1,17 @@
-# 149. Writing Serialised Data To File
-import json
+# 159. Map In Python
 
 
-def save_user_data():
-    user_list = []
-
-    while True:
-        name = input('Enter name (or q to quit: ')
-        if name == 'q':
-            break
-        email = input('Enter email: ')
-        contact = input('Enter contact: ')
-
-        # creatind dictionary
-        user_data = {
-            "name": name,
-            "email": email,
-            "contact": contact
-        }
-        # save any user data
-        user_list.append(user_data)
-
-        with open('user_data.json', 'w') as file:
-            json.dump(user_list, file)  # zabi json u user_list
-        print('User data saved succesfully')
+"""# 158. Lambda Functions In Python
+def square(x):
+    return x ** 2
 
 
-save_user_data()
+print(square(5))
 
-"""# 148. Deserialization
-json_data = '{"name": "John Doe", "age": 30, "city": "New York"}'
-data = json.loads(json_data)
-print(data)
-"""
-
-"""# 147. Serialization
-
-data = {"name": 'John Doe',
-        'age': 30,
-        'city': 'New York'}
-json_data = json.dumps(data)  # konvertira podatke u json string
-print(json_data)
+result = (lambda x: x ** 2)(5)
+print(result)
+result = (lambda x, y: x + y)(5, 2)
+print(result)
+result = (lambda x=10, y=20: x + y)(y=2)
+print(result)
 """
