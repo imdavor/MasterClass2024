@@ -1,7 +1,94 @@
-# 159. Map In Python
+# 166. Reversing a List Using Map.
+
+# 165. Extracting Initials Using Map
+"""names = ["John Doe", "Alan Ford", "Bob Rock"]
+initials = list(map(lambda name: "".join([n[0] for n in name.split()]), names))
+print(initials)
+"""
+# 164. Extracting Initials From Name using split()
+"""
+for name in names:
+    print(name.split()[0][0] + name.split()[1][0])
+"""
+
+# 163. Celsius to Fahrenheit Using Map
+"""t_celsious = [0, 1, 25, 30, 15, 10, 35]
+
+t_farenheight = list(map(lambda c: c * 9 / 5 + 32, t_celsious))
+
+print(t_farenheight)
+"""
+"""# 162. Generators In Python - slicno listi ali se ne pospremaju u memoriju i slicno funkcijama
+def even_generator(x):
+    for i in range(x):
+        if i % 2 == 0:
+            yield i
 
 
-"""# 158. Lambda Functions In Python
+print(list(even_generator(100)))"""
+
+"""def function():
+    counter = 0
+    while counter <= 10:
+        # slicno kao i return ali: Naredba yield obustavlja izvršenje funkcije i šalje vrijednost natrag pozivatelju, ali zadržava
+        # dovoljno stanja da omogući funkciji nastavak tamo gdje je stala.
+        yield counter
+        counter += 1
+
+
+print(list(function()))"""
+
+# 161. Filter In Python
+"""numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+# ovo je booolen function
+# def odd(x):
+#     if x % 2 == 1:
+#         return x
+
+
+# odd_numbers = list(filter(odd, numbers))  # u filter ide funk + lista, onda sve u listu pa onda u varijablu
+odd_numbers = list(filter(lambda x: x % 2 == 1, numbers))  # ovak bi zgledalo da koristimo lambdu- onda nam ne treba funkcija
+print(odd_numbers)
+"""
+"""" ovo je bez filtera
+odd_nums = []
+for number in numbers:
+    if number % 2 == 1:
+        odd_nums.append(number)
+print(odd_nums)"""
+"""# 160. Using Map In Different Ways
+
+names = ['john', 'rob', 'mike']
+# cap_names = list(map(str.capitalize, names))
+cap_names = list(map(str.upper, names))
+print(cap_names)
+"""
+"""prices = [100, 200, 300, 400, 500]
+new_prices = list(map(lambda x: x - x * 5 / 100, prices))
+print(new_prices)"""
+
+"""numbers = ['1', '2', '3', '4', '5']
+
+new_list = list(map(int, numbers)) #prebacujemo stringove u int, pa mapiramo pa konvertiramo u listu
+
+print(new_list)"""
+
+# 159. Map In Python - da ne zauzimamo memoriju sa loop
+"""numbers = [1, 2, 3, 4, 5]
+
+def square(x):
+    return x ** 2
+
+new_list = list(map(square, numbers))  # mapiramo, prebacimo u listu, ubacimo u varijablu- čitaj unatrag
+print(new_list)
+"""
+"""for number in numbers:
+    print(square(number))
+print(square(10))"""
+
+# 158. Lambda Functions In Python
+"""
 def square(x):
     return x ** 2
 
