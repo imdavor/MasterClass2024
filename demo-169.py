@@ -1,5 +1,17 @@
+# 169. Filtering Students
+"""students = [
+    {"name": "Alice", "age": 18, "grade": "A"},
+    {"name": "Bob", "age": 17, "grade": "B"},
+    {"name": "Charlie", "age": 19, "grade": "A"},
+    {"name": "David", "age": 16, "grade": "C"},
+    {"name": "Eve", "age": 18, "grade": "A"}
+]
+a_students = list(filter(lambda s: s["age"] > 18 and s["grade"] == "A", students))
+# lambda s: s = svaki entry u ovoj listi; s[] = s of...
+print(a_students)"""
+
 # 168. Filter Prime Numbers - diviszible by 1 or itself
-numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10]
+"""numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10]
 
 
 def is_prime(n):
@@ -14,7 +26,7 @@ def is_prime(n):
 print(is_prime(7))
 
 primes_numbers = list(filter(is_prime, numbers))
-print(primes_numbers)
+print(primes_numbers)"""
 
 # 166. Reversing a List Using Map.
 """def fibonacci(n):
@@ -60,13 +72,9 @@ def even_generator(x):
 
 print(list(even_generator(100)))"""
 
-"""def function():
-    counter = 0
-    while counter <= 10:
-        # slicno kao i return ali: Naredba yield obustavlja izvršenje funkcije i šalje vrijednost natrag pozivatelju, ali zadržava
-        # dovoljno stanja da omogući funkciji nastavak tamo gdje je stala.
-        yield counter
-        counter += 1
+"""def function(): counter = 0 while counter <= 10: # slicno kao i return ali: Naredba yield obustavlja izvršenje 
+funkcije i šalje vrijednost natrag pozivatelju, ali zadržava # dovoljno stanja da omogući funkciji nastavak tamo gdje 
+je stala. yield counter counter += 1
 
 
 print(list(function()))"""
@@ -80,10 +88,9 @@ print(list(function()))"""
 #         return x
 
 
-# odd_numbers = list(filter(odd, numbers))  # u filter ide funk + lista, onda sve u listu pa onda u varijablu
-odd_numbers = list(filter(lambda x: x % 2 == 1, numbers))  # ovak bi zgledalo da koristimo lambdu- onda nam ne treba funkcija
-print(odd_numbers)
-"""
+# odd_numbers = list(filter(odd, numbers))  # u filter ide funk + lista, onda sve u listu pa onda u varijablu 
+odd_numbers = list(filter(lambda x: x % 2 == 1, numbers))  # ovak bi zgledalo da koristimo lambdu- onda nam ne treba 
+funkcija print(odd_numbers)"""
 """" ovo je bez filtera
 odd_nums = []
 for number in numbers:
