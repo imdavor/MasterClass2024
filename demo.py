@@ -1,5 +1,38 @@
-# 166. Reversing a List Using Map.
+# 168. Filter Prime Numbers - diviszible by 1 or itself
+numbers = [2, 3, 4, 5, 6, 7, 8, 9, 10]
 
+
+def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, n):
+        if n % i == 0:
+            return False
+    return True
+
+
+print(is_prime(7))
+
+primes_numbers = list(filter(is_prime, numbers))
+print(primes_numbers)
+
+# 166. Reversing a List Using Map.
+"""def fibonacci(n):
+    if n <= 0:
+        return []
+    elif n == 1:
+        return [0]
+    elif n == 2:
+        return [0, 1]
+    else:
+        fib_sq = [0, 1]
+        fib_sq.extend(map(lambda i: fib_sq[i - 1] + fib_sq[i - 2], range(2, n)))
+        return fib_sq
+
+
+fibonacci_sequence = fibonacci(10)
+print(fibonacci_sequence)
+"""
 # 165. Extracting Initials Using Map
 """names = ["John Doe", "Alan Ford", "Bob Rock"]
 initials = list(map(lambda name: "".join([n[0] for n in name.split()]), names))
