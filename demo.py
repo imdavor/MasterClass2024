@@ -1,5 +1,5 @@
 # 176. Functional & OOP Based Way Of Writing Code
-
+#
 # 175. Methods In Object Oriented Programming
 """class Product:
     quantity = 400
