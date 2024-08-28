@@ -1,5 +1,32 @@
 # 176. Functional & OOP Based Way Of Writing Code
+# def product_data():
+#     product_name = input('Enter product name: ')
+#     product_price = input('Enter product price: ')
+#     print(product_name, product_price)
 #
+#
+# product_data()
+
+# ovako to izgleda u OOPu
+
+class Product:
+
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+    def get_data(self):
+        self.name = input('Enter product name: ')
+        self.price = input('Enter product price: ')
+
+    def put_data(self):
+        print(f'Product name: {self.name}, Product price: {self.price}')
+
+
+p1 = Product("", "")
+p1.get_data()
+p1.put_data()
+
 # 175. Methods In Object Oriented Programming
 """class Product:
     quantity = 400
