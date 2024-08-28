@@ -5,6 +5,7 @@
 #     print(product_name, product_price)
 #
 #
+
 # product_data()
 
 # ovako to izgleda u OOPu
