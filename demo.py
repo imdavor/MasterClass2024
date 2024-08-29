@@ -1,4 +1,38 @@
+# 177. Inheritance
+class Product:
+
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
+    def get_data(self):
+        self.name = input('Enter product name: ')
+        self.price = input('Enter product price: ')
+
+    def put_data(self):
+        print(f'Product name: {self.name}\nProduct price: {self.price}')
+
+
+class DigitalProduct(Product):  # inherit from Product class
+    def __init__(self, link):
+        self.link = link
+
+    def get_link(self):
+        self.link = input('Enter product link: ')
+
+    def put_link(self):
+        print(f'Product link: {self.link}')
+
+
+ebook = DigitalProduct("")
+ebook.get_data()
+ebook.get_link()
+ebook.put_data()
+ebook.put_link()
+
 # 176. Functional & OOP Based Way Of Writing Code
+
+
 # def product_data():
 #     product_name = input('Enter product name: ')
 #     product_price = input('Enter product price: ')
@@ -10,7 +44,7 @@
 
 # ovako to izgleda u OOPu
 
-class Product:
+"""class Product:
 
     def __init__(self, name, price):
         self.name = name
@@ -26,7 +60,7 @@ class Product:
 
 p1 = Product("", "")
 p1.get_data()
-p1.put_data()
+p1.put_data()"""
 
 # 175. Methods In Object Oriented Programming
 """class Product:
