@@ -1,5 +1,84 @@
+# 182. Instance Methods
+class Student:
+    def __init__(self, name):
+        self.name = name  # instance variable
+
+    # da pristupimo i printamo var name kreiramo metodu
+    def hello(self):
+        print(f'Hello my name is {self.name}.')  # koristeci self.name pristupamo instanci klase pa se tako
+        # cijela metoda zove metoda instance
+
+    def name_lenght(self):
+        # print(f'Broj znakova u imenu je {len(self.name)}.')
+        return len(self.name)
+
+
+student1 = Student("Choice")  # instanca klase
+student1.hello()
+student1.name_lenght()
+lenght = student1.name_lenght()
+print(lenght)
+# 181. Method Overriding
+"""class Food:
+    def type(self):
+        print('Food')
+
+
+class Fruit:
+    def type(self):
+        print('Fruit')
+
+
+apple = Fruit()
+print(apple.type())"""
+
+# 180. Polymorphism
+
+
+# 179. Multi-level Inheritance
+"""class A:
+    def method_a(self):
+        print('Method of class A')
+
+
+class B(A):
+    def method_b(self):
+        print('Method of class BA')
+
+
+class C(B):
+    def method_c(self):
+        print('Method of class CB')
+
+
+inherited = C()
+inherited.method_a()
+inherited.method_b()
+inherited.method_c()"""
+
+# 178. Multiple Inheritance
+"""class A:
+    def method_a(self):
+        print('Method of class A')
+
+
+class B:
+    def method_b(self):
+        print('Method of class B')
+
+
+class C(A, B):
+    def method_c(self):
+        print('Method of class C')
+
+
+inherited = C()
+inherited.method_a()
+inherited.method_b()
+inherited.method_c()"""
+
 # 177. Inheritance
-class Product:
+"""class Product:
 
     def __init__(self, name, price):
         self.name = name
@@ -29,7 +108,7 @@ ebook.get_data()
 ebook.get_link()
 ebook.put_data()
 ebook.put_link()
-
+"""
 # 176. Functional & OOP Based Way Of Writing Code
 
 
