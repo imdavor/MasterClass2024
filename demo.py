@@ -1,5 +1,79 @@
-# 182. Instance Methods
+# 185. Nested Classes
+
+
+# 184.Static method
+class Circle:
+    @staticmethod
+    def area(r):
+        return 3.14 * r * r
+
+    @staticmethod
+    def circumrefernce(r):
+        return 2 * 3.14 * r
+
+
+a = Circle.area(10)
+print(a)
+c = Circle.circumrefernce(10)
+print(c)
+
+
 class Student:
+    # class variable
+    category = "student"
+
+    def __init__(self, name):
+        self.name = name  # instance variable
+
+    # da pristupimo i printamo var name kreiramo metodu
+    def hello(self):
+        print(f'Hello my name is {self.name}.')  # koristeci self.name pristupamo instanci klase pa se tako
+        # cijela metoda zove metoda instance
+
+    def name_lenght(self):
+        # print(f'Broj znakova u imenu je {len(self.name)}.')
+        return len(self.name)
+
+    @classmethod
+    def info(cls):
+        print(f'This is method of class {cls.category}')
+
+    @staticmethod
+    def add(a, b):
+        print(a + b)
+
+
+student1 = Student("ChoCho")  # instanca klase
+Student.info()
+Student.add(5, 3)
+
+# 183. Class Method
+"""class Student:
+    # class variable
+    category = "student"
+
+    def __init__(self, name):
+        self.name = name  # instance variable
+
+    # da pristupimo i printamo var name kreiramo metodu
+    def hello(self):
+        print(f'Hello my name is {self.name}.')  # koristeci self.name pristupamo instanci klase pa se tako
+        # cijela metoda zove metoda instance
+
+    def name_lenght(self):
+        # print(f'Broj znakova u imenu je {len(self.name)}.')
+        return len(self.name)
+
+    @classmethod
+    def info(cls):
+        print(f'This is method of class {cls.category}')
+
+
+student1 = Student("ChoCho")  # instanca klase
+Student.info()"""
+
+# 182. Instance Methods
+"""class Student:
     def __init__(self, name):
         self.name = name  # instance variable
 
@@ -17,7 +91,8 @@ student1 = Student("Choice")  # instanca klase
 student1.hello()
 student1.name_lenght()
 lenght = student1.name_lenght()
-print(lenght)
+print(lenght)"""
+
 # 181. Method Overriding
 """class Food:
     def type(self):
