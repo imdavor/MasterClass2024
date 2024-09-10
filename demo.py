@@ -1,6 +1,3 @@
-# 185. Nested Classes
-
-
 # 184.Static method
 class Circle:
     @staticmethod
