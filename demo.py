@@ -1,7 +1,7 @@
 # 220. Matching Phone Numbers Part 1
 import re
 
-text = "Please contact us at +1 (123) 800-555-1234 or vi aemail joe@gmaul.com"
+text = "Please contact us at +1 (123) 800-555-1234 or via email joe@gmaul.com"
 pattern = r"\+?\d{1,3}[-\s]\(?\d{1,3}\)?"
 # 1. \+ = izbjegni plus znak ali ? on je opcija da ga ima
 # 2. onda iza ide broj od [0-9] pa koristimo shorthand \d
