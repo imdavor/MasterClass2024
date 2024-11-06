@@ -1,15 +1,45 @@
-# 220. Matching Phone Numbers Part 1
+# 218. Checking Validity of Emails
 import re
 
-text = "Please contact us at +1 (123) 800-555-1234 or via email joe@gmaul.com"
-pattern = r"\+?\d{1,3}[-\s]\(?\d{1,3}\)?"
+pattern = r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b"
+email = input("Enter your email address: ")
+matches = re.match(pattern, email)
+print(matches)
+
+
+# 217. Matching Email Addresses
+"""import re
+
+text = "Please contact us at: support@datacamp.com"
+pattern = r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}"
+# 1. support -- [A-Za-z0-9._%+-]+ najmanje 1 ili više znakova od A do Z, a do Z, 0 do 9, ., _, %, +, -
+# 2. @[A-Za-z0-9.-]+ -- iza znaka @ i +(mora biti najmanje 1 alfanumeric) 
+# 3. \. mora biti točka
+# 4. [A-Za-z]{2,} -- iza točke mora biti slovo od A do Z, a do Z, 2 do ili više znakova
+
+matches = re.findall(pattern, text)
+print(matches)"""
+
+
+# 220. Matching Phone Numbers Part 1
+# 221. Matching Phone Numbers Part 2
+"""import re
+
+text = "Please contact us at +91 (123) 456-7890 or via email joe@gmaul.com"
+pattern = r"\+?\d{1,3}[-.\s]?\(?\d{1,3}\)?[-.\s]?\d{1,3}[-.\s]?\d{1,4}"
 # 1. \+ = izbjegni plus znak ali ? on je opcija da ga ima
 # 2. onda iza ide broj od [0-9] pa koristimo shorthand \d
 # 3. za country code imamo 3 broja pa ide {1,3}
-# 4. iza pozivnog broja može ići  space ili minus, točka i space [-.\s]
+# 4. iza pozivnog broja može ići space, točka ili minus, [-.\s]
 # 5. onda ide \(?\d{1,3}\)? za (123)
+# 6. iza (123) može ići space, točka ili minus, dodajemo ? --- [-.\s]?
+# 7. 800 -- \d{1,3} pošto idu od jednog do tri broja čekiramo broj \d i brojeve od 1 do 3
+# 8. iza 800 može ići space, točka ili minus, dodajemo ? --- [-.\s]?
+# 9. 555-1234 -- \d{1,4} pošto idu od jednog do tri broja čekiramo broj \d i brojeve od 1 do 4
+
+
 matches = re.findall(pattern, text)
-print(matches)
+print(matches)"""
 
 # 219. Combining Shorthands & Metacharacters
 
