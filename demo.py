@@ -1,13 +1,25 @@
-# 218. Checking Validity of Emails
+# 224. Matching dates
 import re
 
-pattern = r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b"
+text = "Today is 11-27-2018. PyCon starts 3-13-2013."
+pattern = r"\d{1,2}-\d{2}-\d{4}"
+dates = re.findall(pattern, text)
+
+print(dates)
+
+
+# 223. Checking Validity of Emails
+"""import re
+
+pattern = r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b"
 email = input("Enter your email address: ")
-matches = re.match(pattern, email)
-print(matches)
+if re.match(pattern, email):
+    print("Valid email address")
+else:
+    print("Invalid email address")
+"""
 
-
-# 217. Matching Email Addresses
+# 221. Matching Email Addresses
 """import re
 
 text = "Please contact us at: support@datacamp.com"
@@ -23,10 +35,10 @@ print(matches)"""
 
 # 220. Matching Phone Numbers Part 1
 # 221. Matching Phone Numbers Part 2
-"""import re
+""""import re
 
 text = "Please contact us at +91 (123) 456-7890 or via email joe@gmaul.com"
-pattern = r"\+?\d{1,3}[-.\s]?\(?\d{1,3}\)?[-.\s]?\d{1,3}[-.\s]?\d{1,4}"
+#pattern = r"\+?\d{1,3}[-.\s]?\(?\d{1,3}\)?[-.\s]?\d{1,3}[-.\s]?\d{1,4}"
 # 1. \+ = izbjegni plus znak ali ? on je opcija da ga ima
 # 2. onda iza ide broj od [0-9] pa koristimo shorthand \d
 # 3. za country code imamo 3 broja pa ide {1,3}
