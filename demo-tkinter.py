@@ -1,13 +1,3 @@
-# 234. Beverage Selector
-from tkinter import *
-
-# create window objekt
-root = Tk()
-root.geometry("300x300")
-
-root.mainloop()
-
-
 # 233. Checkboxes
 """from tkinter import *
 
