@@ -57,10 +57,10 @@ def delete_data():
     student = cur.fetchone()  # uhvati red iz tablice
     if student:  # da li postoji student sa tim id-em
         print(
-            f"Student with id {student_id} found:\nID = {student[0]} \nName = {student[1]}, \nAddress = {student[2]}, \nAge = {student[3]}, \nNumber = {student[4]}"
+            f"Student with id {student_id} found>>> ID = {student[0]} Name = {student[1]}, Address = {student[2]}, Age = {student[3]}, Number = {student[4]}"
         )
-        chioce = input("Do you want to delete this student? (y/n): ")
-        if chioce.lower == "y":
+        choice = input("Do you want to delete this student? (y/n): ")
+        if choice.lower() == "y":
             cur.execute("DELETE FROM students WHERE students_id = %s", (student_id,))
             print("Data deleted successfully!")
         else:
@@ -106,6 +106,50 @@ def update_data():
     print("Data updated successfully!")
 
 
+def read_data():
+    conn = psycopg2.connect(
+        dbname="studentdb",
+        user="postgres",
+        password="admin123",
+        host="localhost",
+        port="5432",
+    )
+    cur = conn.cursor()  # moraš kreirati kursor
+    cur.execute("SELECT * FROM students")
+    students = cur.fetchall()  # uhvati sve redove iz tablice
+    for student in students:
+        print(
+            f"ID = {student[0]} Name = {student[1]}, Address = {student[2]}, Age = {student[3]}, Number = {student[4]}"
+        )
+    conn.commit()
+    conn.close()
+
+
 # insert_data()
 # update_data()
-delete_data()
+# delete_data()
+
+while True:
+    print("Welcome to Student Management Database System")
+    print("1. Create table")
+    print("2. Insert data")
+    print("3. Read data")
+    print("4. Delete data")
+    print("5. Update data")
+    print("6. Exit")
+    choice = input("Enter your choice (1-6): ")
+    if choice == "1":
+        create_table()
+    elif choice == "2":
+        insert_data()
+    elif choice == "3":
+        read_data()
+    elif choice == "4":
+        delete_data()
+    elif choice == "5":
+        update_data()
+    elif choice == "6":
+        print("Exiting...")
+        break
+    else:
+        print("Invalid choice. Please try again.")
