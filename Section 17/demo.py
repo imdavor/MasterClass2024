@@ -43,6 +43,34 @@ def insert_data():
     conn.close()
 
 
+def delete_data():
+    student_id = input("Enter student id you want to delete: ")
+    conn = psycopg2.connect(
+        dbname="studentdb",
+        user="postgres",
+        password="admin123",
+        host="localhost",
+        port="5432",
+    )
+    cur = conn.cursor()  # moraš kreirati kursor
+    cur.execute("SELECT * FROM students WHERE students_id = %s", (student_id,))
+    student = cur.fetchone()  # uhvati red iz tablice
+    if student:  # da li postoji student sa tim id-em
+        print(
+            f"Student with id {student_id} found:\nID = {student[0]} \nName = {student[1]}, \nAddress = {student[2]}, \nAge = {student[3]}, \nNumber = {student[4]}"
+        )
+        chioce = input("Do you want to delete this student? (y/n): ")
+        if chioce.lower == "y":
+            cur.execute("DELETE FROM students WHERE students_id = %s", (student_id,))
+            print("Data deleted successfully!")
+        else:
+            print("Data not deleted!")
+    else:
+        print("Student not found!")
+    conn.commit()
+    conn.close()
+
+
 def update_data():
     student_id = input("Enter student id: ")
     conn = psycopg2.connect(
@@ -79,4 +107,5 @@ def update_data():
 
 
 # insert_data()
-update_data()
+# update_data()
+delete_data()
