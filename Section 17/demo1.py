@@ -1,6 +1,7 @@
 from tkinter import *
+from tkinter import ttk
 
-
+# 274. Creating Tkinter Window
 root = Tk()
 root.title("Student Management System")
 
@@ -32,12 +33,28 @@ Label(frame, text="Phone number:").grid(
 number_entry = Entry(frame)
 number_entry.grid(row=3, column=1, pady=2, sticky="we")
 
+
+# 275. Adding Buttons
 button_frame = Frame(root)
 button_frame.grid(row=1, column=0, pady=5, sticky="ew")
 Button(button_frame, text="Create table").grid(row=0, column=0, padx=5)
 Button(button_frame, text="Add data").grid(row=0, column=1, padx=5)
 Button(button_frame, text="Update data").grid(row=0, column=2, padx=5)
 Button(button_frame, text="Delete data").grid(row=0, column=3, padx=5)
+
+
+# 276. Creating A TreeView
+tree_frame = Frame(root)
+tree_frame.grid(row=2, column=0, padx=10, pady=10, sticky="nsew")
+tree_scroll = Scrollbar(tree_frame)
+tree_scroll.pack(side=RIGHT, fill=Y)
+
+tree = ttk.Treeview(
+    tree_frame, yscrollcommand=tree_scroll.set, selectmode="browse"
+)  # poveži scrollbar i treeview, selectmode="browse" znači da korisnik može birati samo jednu stavku
+tree.pack()
+# kada scrollamo želimo da se i treeview scrolla
+tree_scroll.config(command=tree.yview)
 
 
 root.mainloop()
