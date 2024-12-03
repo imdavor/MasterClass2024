@@ -64,7 +64,7 @@ def delete_data():
     messagebox.showinfo("Success!", "Student deleted successfully!")
 
 
-# kad korisnik klikne na update, treba da se popune polja za update
+# TODO: doraditi update funkciju da se na double click popuni formular i onda da se onda može update-ati
 
 
 # update data funkcija
