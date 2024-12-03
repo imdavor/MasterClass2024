@@ -22,7 +22,7 @@ def run_query(query, params=()):  # u formi tuplea params=()
             query_result = cur.fetchall()
         conn.commit()
     except psycopg2.Error as e:
-        messagebox.showerror("Daatabase Error", str(e))
+        messagebox.showerror("Database Error", str(e))
     finally:
         cur.close()
         conn.close()
@@ -51,6 +51,52 @@ def insert_data():
     )
     run_query(query, parameters)
     messagebox.showinfo("Success!", "Student added successfully!")
+    refresh_treeview()
+
+
+def delete_data():
+    selected_item = tree.selection()[0]
+    student_id = tree.item(selected_item)["values"][0]
+    query = "DELETE FROM students WHERE students_id = %s"
+    parameters = (student_id,)
+    run_query(query, parameters)
+    refresh_treeview()
+    messagebox.showinfo("Success!", "Student deleted successfully!")
+
+
+# kad korisnik klikne na update, treba da se popune polja za update
+
+
+# update data funkcija
+def update_data():
+    selected_item = tree.selection()[0]
+    student_id = tree.item(selected_item)["values"][0]
+
+    query = "UPDATE students SET name=%s, address=%s, age=%s, number=%s WHERE students_id = %s"
+    parameters = (
+        name_entry.get(),
+        address_entry.get(),
+        age_entry.get(),
+        number_entry.get(),
+        student_id,
+    )
+    run_query(query, parameters)
+    messagebox.showinfo("Success!", "Student updated successfully!")
+    refresh_treeview()
+
+
+def create_table():
+    query = """
+    CREATE TABLE IF NOT EXISTS students (
+        students_id SERIAL PRIMARY KEY,
+        name VARCHAR(50),
+        address VARCHAR(100),
+        age INTEGER,
+        number VARCHAR(20)
+    )
+    """
+    run_query(query)
+    messagebox.showinfo("Success!", "Table created successfully!")
     refresh_treeview()
 
 
@@ -84,10 +130,16 @@ number_entry.grid(row=3, column=1, pady=2, sticky="we")
 # 275. Adding Buttons
 button_frame = Frame(root)
 button_frame.grid(row=1, column=0, pady=5, sticky="ew")
-Button(button_frame, text="Create table").grid(row=0, column=0, padx=5)
+Button(button_frame, text="Create table", command=create_table).grid(
+    row=0, column=0, padx=5
+)
 Button(button_frame, text="Add data", command=insert_data).grid(row=0, column=1, padx=5)
-Button(button_frame, text="Update data").grid(row=0, column=2, padx=5)
-Button(button_frame, text="Delete data").grid(row=0, column=3, padx=5)
+Button(button_frame, text="Update data", command=update_data).grid(
+    row=0, column=2, padx=5
+)
+Button(button_frame, text="Delete data", command=delete_data).grid(
+    row=0, column=3, padx=5
+)
 
 
 # 276. Creating A TreeView
