@@ -64,6 +64,13 @@ def delete_data():
     messagebox.showinfo("Success!", "Student deleted successfully!")
 
 
+def clear_entries():
+    name_entry.delete(0, END)
+    address_entry.delete(0, END)
+    age_entry.delete(0, END)
+    number_entry.delete(0, END)
+
+
 # TODO: doraditi update funkciju da se na double click popuni formular i onda da se onda može update-ati
 
 
@@ -83,6 +90,29 @@ def update_data():
     run_query(query, parameters)
     messagebox.showinfo("Success!", "Student updated successfully!")
     refresh_treeview()
+    clear_entries()
+
+    # Find and highlight the updated row
+    for item in tree.get_children():
+        if tree.item(item)["values"][0] == student_id:
+            tree.selection_set(item)
+            tree.item(item, tags=("updated",))
+
+
+def on_double_click(event):
+    # Get the selected item
+    selected_item = tree.selection()[0]
+    # Get all values from selected row
+    values = tree.item(selected_item)["values"]
+
+    # Clear current entries
+    clear_entries()
+
+    # Insert values into entry fields
+    name_entry.insert(0, values[1])
+    address_entry.insert(0, values[2])
+    age_entry.insert(0, values[3])
+    number_entry.insert(0, values[4])
 
 
 def create_table():
@@ -174,5 +204,8 @@ tree.heading("number", text="Phone number", anchor=CENTER)
 
 
 refresh_treeview()
+
+tree.tag_configure("updated", background="light green")
+tree.bind("<Double-1>", on_double_click)
 
 root.mainloop()
