@@ -30,4 +30,4 @@ def decompress(input_file, output_file):
 
 
 # compress("demo.txt", "ot.txt")
-decompress("ot.txt", "de.txt")
+# decompress("ot.txt", "de.txt")
