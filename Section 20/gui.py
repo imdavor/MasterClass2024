@@ -23,16 +23,4 @@ password_entry.get()
 button= Button(root, text="Validate password", command=lambda:validate(password_entry.get())) 
 button.pack()
 
-# prikaži poruku nakon validacije
-message_label = Label(root, text="")
-message_label.pack()
-
-def display_message(is_valid):
-    message = "Login successful!" if is_valid else "Invalid password!"
-    message_label.config(text=message)
-
-# Update button command to display message
-button = Button(root, text="Validate password", command=lambda: display_message(validate(password_entry.get())))
-button.pack()
-
 root.mainloop()
