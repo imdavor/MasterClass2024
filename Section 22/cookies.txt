@@ -1,0 +1,10 @@
+# Netscape HTTP Cookie File
+# http://curl.haxx.se/rfc/cookie_spec.html
+# This is a generated file!  Do not edit.
+
+.chromewebstore.google.com	TRUE	/	FALSE	1770468532	_ga	GA1.1.104970293.1731514379
+.chromewebstore.google.com	TRUE	/	FALSE	1766076537	_ga_6HY0HF3R2N	GS1.1.1731516533.1.0.1731516537.0.0.0
+chromewebstore.google.com	FALSE	/	TRUE	1770468531	OSID	g.a000sAjSQoOIO0pT80TfyIfUWAafavjec9PvfvZmdLUMBCMcjaZo9ZkpCYNkQjV0VXuCZooaIwACgYKAbgSARQSFQHGX2MiCWXUf1EcD721h0JA7dKoRRoVAUF8yKrjiyL0ODd74lY8PbkYZXAf0076
+chromewebstore.google.com	FALSE	/	TRUE	1770468531	__Secure-OSID	g.a000sAjSQoOIO0pT80TfyIfUWAafavjec9PvfvZmdLUMBCMcjaZot81XtVPqy8P7Uc_SFXSKZgACgYKAdgSARQSFQHGX2Mi3pSco75AOmBCCpRWaGYBvxoVAUF8yKoE7Wy35pLmg0bNA5KEUYVE0076
+chromewebstore.google.com	FALSE	/	TRUE	1738500532	OTZ	7893409_52_52_123900_48_436380
+.chromewebstore.google.com	TRUE	/	FALSE	1770468587	_ga_KHZNC1Q6K0	GS1.1.1735908532.2.1.1735908587.0.0.0
