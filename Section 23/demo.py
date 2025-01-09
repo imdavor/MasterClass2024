@@ -3,10 +3,6 @@ odd_sum = 0
 even_sum = 0
 double_list = []
 number = list(card_no)
-# print(number)
-# for x in number:
-#     print(x)
-
 for idx, val in enumerate(number):
     if idx % 2 != 0:
         odd_sum += int(val)
