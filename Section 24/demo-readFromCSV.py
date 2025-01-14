@@ -2,12 +2,11 @@ from fpdf import FPDF
 from fpdf.fonts import FontFace
 import csv
 
-
 with open("countries.txt", encoding="utf8") as csv_file:
     data = list(csv.reader(csv_file, delimiter=","))
 
 pdf = FPDF()
-pdf.set_font("helvetica", "", 14)
+pdf.set_font("helvetica", "", 12)
 
 pdf.add_page()
 pdf.set_draw_color(255, 0, 0)
