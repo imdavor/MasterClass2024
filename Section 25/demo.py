@@ -1,4 +1,5 @@
 from tkinter import *
+from fpdf import FPDF
 
 
 window = Tk()
@@ -15,7 +16,24 @@ def add_medicine():
     price = medicines[selected_medicine]
     item_total = quantity * price
     invoice_items.append((selected_medicine, quantity, price))
-    print(invoice_items)
+    total_amount_entry.delete(0, END)
+    total_amount_entry.insert(END, str(calculate_total()))
+    update_invoice_text()
+
+
+def calculate_total():
+    total = 0.00
+    for item in invoice_items:
+        total = total + item[2]
+    return total
+
+
+def update_invoice_text():
+    invoice_text.delete(1.0, END)
+    for item in invoice_items:
+        invoice_text.insert(
+            END, f"Medicine: {item[0]}, Quantity: {item[1]}, Total: {item[2]}\n"
+        )
 
 
 medicine_label = Label(window, text="Medicine: ")
@@ -35,8 +53,12 @@ quantity_entry.pack()
 add_button = Button(window, text="Add medicine: ", command=add_medicine)
 add_button.pack()
 
-total_amount_entry = label = Label(window, text="Total amount: ")
+total_amount_label = Label(window, text="Total amount:")
+total_amount_label.pack()
+
+total_amount_entry = Entry(window)
 total_amount_entry.pack()
+
 
 customer_label = Label(window, text="Customer name: ")
 customer_label.pack()
