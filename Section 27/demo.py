@@ -70,7 +70,7 @@ while not game_over:
             game_over = True
 
     font_style = pygame.font.SysFont(None, 50)
-    score_text = font_style.render("Score: " + str(score), True, white)
+    score_text = font_style.render("Rezultat: " + str(score), True, white)
     window.blit(score_text, (10, 10))
 
     if x1 == foodx and y1 == foody:
