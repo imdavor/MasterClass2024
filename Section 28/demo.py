@@ -1,12 +1,13 @@
-from PyQt6.QtWidgets import QWidget, QApplication
+from PyQt6.QtWidgets import QWidget, QApplication, QLabel, QPushButton
 import sys
+from PyQt6.QtGui import QPixmap, QFont
 
 
 class Window(QWidget):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("My firs PyQt Window")
+        self.setWindowTitle("My first PyQt Window")
         self.setGeometry(0, 0, 400, 300)
 
 
