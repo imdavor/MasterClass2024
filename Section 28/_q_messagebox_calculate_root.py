@@ -37,13 +37,18 @@ class Window(QMainWindow):
         calculate_button.clicked.connect(self.calculate_self_root)
 
     def calculate_self_root(self):
-        number = float(self.number_input.text())
-        square_root = math.sqrt(number)
-        if square_root.is_integer():
-            self.result_label.setText(f"Square root is {square_root}")
-        else:
-            msg = QMessageBox.warning(
-                self, "Warning!", "The number is not a perfect square!"
+        try:
+            number = float(self.number_input.text())
+            square_root = math.sqrt(number)
+            if square_root.is_integer():
+                self.result_label.setText(f"Square root is {square_root}")
+            else:
+                msg = QMessageBox.warning(
+                    self, "Warning!", "The number is not a perfect square!"
+                )
+        except ValueError:
+            QMessageBox.warning(
+                self, "Invalid input", "Please enter only valid numbers!"
             )
 
 
