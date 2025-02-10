@@ -10,6 +10,7 @@ from PyQt6.QtWidgets import (
 )
 import sys
 from PyQt6.QtGui import QPixmap, QFont
+import math
 
 
 class Window(QMainWindow):
