@@ -7,6 +7,9 @@ from PyQt6.QtWidgets import (
     QPushButton,
     QLineEdit,
     QCheckBox,
+    QHBoxLayout,
+    QVBoxLayout,
+    QGridLayout,
 )
 import sys
 from PyQt6.QtGui import QPixmap, QFont
