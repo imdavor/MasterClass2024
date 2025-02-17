@@ -12,6 +12,9 @@ from PyQt6.QtWidgets import (
     QGridLayout,
     QLineEdit,
     QFormLayout,
+    QComboBox,
+    QStackedLayout,
+    QVBoxLayout,
 )
 import sys
 from PyQt6.QtGui import QPixmap, QFont
