@@ -33,6 +33,11 @@ class Window(QWidget):
         layout = QGridLayout()
         self.setLayout(layout)
         self.display = QLabel("0")
+        # Set the font size
+        font = QFont()
+        font.setPointSize(40)  # Set the desired font size
+        self.display.setFont(font)
+        # Set the font size
         self.display.setAlignment(Qt.AlignmentFlag.AlignRight)
         layout.addWidget(self.display, 0, 0, 1, 4)
 
@@ -44,7 +49,9 @@ class Window(QWidget):
 
         self.equals_button = QPushButton("=")
         self.equals_button.clicked.connect(self.calculate)
+
         self.clear_button = QPushButton("C")
+        self.clear_button.clicked.connect(self.clear)
 
         for i, button in enumerate(self.buttons):
             row, col = divmod(i, 3)
@@ -104,6 +111,12 @@ class Window(QWidget):
         self.display.setText(result)
         self.current_input = result
         self.current_operator = ""
+
+    def clear(self):
+        self.current_input = "0"
+        self.previous_input = ""
+        self.current_operator = ""
+        self.display.setText(self.current_input)
 
 
 app = QApplication(sys.argv)
