@@ -32,6 +32,7 @@ class Window(QMainWindow):
 
         # step 1 create manu bar
         menubar = self.menuBar()
+        menubar.setNativeMenuBar(False)
 
         # creating menu
         file_menu = menubar.addMenu("File")
