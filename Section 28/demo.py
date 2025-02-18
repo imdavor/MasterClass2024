@@ -15,9 +15,11 @@ from PyQt6.QtWidgets import (
     QComboBox,
     QStackedLayout,
     QVBoxLayout,
+    QTextEdit,
+    QMenuBar,
 )
 import sys
-from PyQt6.QtGui import QPixmap, QFont
+from PyQt6.QtGui import QPixmap, QFont, QAction, QIcon
 import math
 
 
