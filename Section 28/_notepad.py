@@ -94,10 +94,16 @@ class Window(QMainWindow):
         print("Creating New File")
 
     def open_file(self):
-        print("Opening file")
+        # print("Opening file")
+        file_path, _ = QFileDialog.getOpenFileName(
+            self, "Open File", "", "All Files(*);;Python File(*.py)"
+        )
+        with open(file_path, "r") as file:
+            text = file.read()
+            self.edit_field.setText(text)
 
     def save_file(self):
-        print("Saving file")
+        # print("Saving file")
         file_path, _ = QFileDialog.getSaveFileName(
             self, "Save File", "", "All Files(*);;Python File(*.py)"
         )
