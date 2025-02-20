@@ -34,6 +34,8 @@ class Window(QMainWindow):
         self.setWindowTitle("Notepad")
         self.setGeometry(100, 100, 400, 300)
 
+        self.current_file = None
+
         self.edit_field = QTextEdit(self)
         self.setCentralWidget(self.edit_field)
 
@@ -62,7 +64,7 @@ class Window(QMainWindow):
 
         save_as_action = QAction("Save as", self)
         file_menu.addAction(save_as_action)
-        save_as_action.triggered.connect(self.save_as_file)
+        save_as_action.triggered.connect(self.save_file_as)
 
         # edit menu
         edit_menu = QMenu("Edit", self)
@@ -92,6 +94,8 @@ class Window(QMainWindow):
 
     def new_file(self):
         print("Creating New File")
+        self.edit_field.clear()
+        self.current_file = None
 
     def open_file(self):
         # print("Opening file")
@@ -102,17 +106,23 @@ class Window(QMainWindow):
             text = file.read()
             self.edit_field.setText(text)
 
-    def save_file(self):
-        # print("Saving file")
+    def save_file_as(self):
+        # print("Saving as file")
         file_path, _ = QFileDialog.getSaveFileName(
-            self, "Save File", "", "All Files(*);;Python File(*.py)"
+            self, "Save File as...", "", "All Files(*);;Python File(*.py)"
         )
         if file_path:
             with open(file_path, "w") as file:
                 file.write(self.edit_field.toPlainText())
+            self.current_file = file_path
 
-    def save_as_file(self):
-        print("Saving as...")
+    def save_file(self):
+        # print("Saving file")
+        if self.current_file:
+            with open(self.current_file, "w") as file:
+                file.write(self.edit_field.toPlainText())
+        else:
+            self.save_file_as()
 
 
 app = QApplication(sys.argv)
