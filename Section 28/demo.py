@@ -17,9 +17,13 @@ from PyQt6.QtWidgets import (
     QVBoxLayout,
     QTextEdit,
     QMenuBar,
+    QMenu,
+    QFileDialog,
+    QInputDialog,
 )
 import sys
-from PyQt6.QtGui import QPixmap, QFont, QAction, QIcon
+from PyQt6.QtGui import QPixmap, QFont, QAction, QIcon, QTextCursor, QColor
+from PyQt6.QtCore import Qt
 import math
 
 
