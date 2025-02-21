@@ -19,9 +19,11 @@ from PyQt6.QtWidgets import (
     QMenuBar,
     QMenu,
     QFileDialog,
+    QInputDialog,
 )
 import sys
-from PyQt6.QtGui import QPixmap, QFont, QAction, QIcon
+from PyQt6.QtGui import QPixmap, QFont, QAction, QIcon, QTextCursor, QColor
+from PyQt6.QtCore import Qt
 import math
 
 
@@ -48,7 +50,7 @@ class Window(QMainWindow):
         file_menu = QMenu("File", self)
         menubar.addMenu(file_menu)  # add to menubar
 
-        # create menu item in menu
+        # create menu item in menu  #################################
         # create actions
         new_action = QAction("New", self)
         file_menu.addAction(new_action)
@@ -66,7 +68,7 @@ class Window(QMainWindow):
         file_menu.addAction(save_as_action)
         save_as_action.triggered.connect(self.save_file_as)
 
-        # edit menu
+        # edit menu #################################
         edit_menu = QMenu("Edit", self)
         menubar.addMenu(edit_menu)
 
@@ -92,8 +94,12 @@ class Window(QMainWindow):
         edit_menu.addAction(paste_action)
         paste_action.triggered.connect(self.edit_field.paste)
 
+        find_action = QAction("Find", self)
+        edit_menu.addAction(find_action)
+        find_action.triggered.connect(self.find_text)
+
     def new_file(self):
-        print("Creating New File")
+        # print("Creating New File")
         self.edit_field.clear()
         self.current_file = None
 
@@ -123,6 +129,22 @@ class Window(QMainWindow):
                 file.write(self.edit_field.toPlainText())
         else:
             self.save_file_as()
+
+    def find_text(self):
+        search_text, ok = QInputDialog.getText(self, "Find text", "Search for")
+        if ok:
+            all_words = []
+            self.edit_field.moveCursor(QTextCursor.MoveOperation.Start)
+            highlight_color = QColor(Qt.GlobalColor.yellow)
+
+            while self.edit_field.find(search_text):
+                selection = QTextEdit.ExtraSelection()
+                selection.format.setBackground(highlight_color)
+
+                selection.cursor = self.edit_field.textCursor()
+                all_words.append(selection)
+
+            self.edit_field.setExtraSelections(all_words)
 
 
 app = QApplication(sys.argv)
